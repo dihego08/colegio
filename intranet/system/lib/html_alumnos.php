@@ -38,11 +38,10 @@ class html_alumnos extends f
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_alumno();">Nuevo Alumno</span>
-                        <a style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-info" href="system/lib/exportar_excel_alumnos.php">
+                        <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_alumno();">Nuevo Alumno</span>
+                        <a style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-outline-info" href="system/lib/exportar_excel_alumnos.php">
                             <span >Exportar EXCEL</span>
                         </a>
-                        <a href="system/lib/generar-carnet.php?id=0" id="btn-exportar-carnet" style="float: right; margin-bottom: 10px;" class="btn btn-maroon btn-sm"><i class="fa fa-id-badge"></i> Imprimir Carnet</a>
                         <h5 class="">
                             <i class="fa fa-bars" aria-hidden="true"></i> Lista de Alumnos
                         </h5>
@@ -118,13 +117,6 @@ class html_alumnos extends f
                                     <div class="col-6 mb-2">
                                         <label for="">Contraseña (*)</label>
                                         <input type="password" class="form-control" id="ins_pass">
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-2 form-row">
-                                    <div class="col-md-12">
-                                        <label for="">Grado</label>
-                                        <select class="form-control" id="id_grado">
-                                        </select>
                                     </div>
                                 </div>
 
@@ -361,9 +353,9 @@ class html_alumnos extends f
                             "data": "estado",
                             "render": function(data){
                                 if(data == 1){
-                                    return "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" style=\"display: block;\" class=\"w-100 btn btn-warning btn-sm\" ><i class=\"fa fa-pencil\"></i></button><button id=\"btn_eliminar\"  style=\"display: block;\" class=\"w-100 mt-1 btn btn-danger btn-sm mb-1\"><i class=\"fa fa-trash\"></i></button>"
+                                    return "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" style=\"display: block;\" class=\"w-100 btn btn-outline-warning btn-sm\" ><i class=\"fa fa-edit\"></i></button><button id=\"btn_eliminar\"  style=\"display: block;\" class=\"w-100 mt-1 btn btn-outline-danger btn-sm mb-1\"><i class=\"fa fa-trash\"></i></button>"
                                 }else{
-                                    return "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" style=\"display: block;\" class=\"w-100 btn btn-warning btn-sm\" ><i class=\"fa fa-pencil\"></i></button><button id=\"btn_eliminar\"  style=\"display: block;\" class=\"w-100 mt-1 btn btn-danger btn-sm mb-1\"><i class=\"fa fa-trash\"></i></button>"
+                                    return "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" style=\"display: block;\" class=\"w-100 btn btn-outline-warning btn-sm\" ><i class=\"fa fa-edit\"></i></button><button id=\"btn_eliminar\"  style=\"display: block;\" class=\"w-100 mt-1 btn btn-outline-danger btn-sm mb-1\"><i class=\"fa fa-trash\"></i></button>"
                                 }
                             },
                         },  {
@@ -372,9 +364,7 @@ class html_alumnos extends f
                             "data": "nombres"
                         }, {
                             "data": "apellidos"
-                        }, {
-                            "data": "grado"
-                        }, ],
+                        }],
                         "language": {
                             "url": "' . $this->baseurl . 'includes/datatables/Spanish.json"
                         },
@@ -570,7 +560,6 @@ class html_alumnos extends f
                         formdata.append("usuario", $("#ins_usuario").val());
                         formdata.append("pass", $("#ins_pass").val());
                         formdata.append("dni", $("#ins_dni").val());
-                        formdata.append("id_grado", $("#id_grado").val());
                         
                         var ajax = new XMLHttpRequest();
                         ajax.upload.addEventListener("progress", progressHandler, false);
@@ -599,7 +588,6 @@ class html_alumnos extends f
                         formdata.append("usuario", $("#ins_usuario").val());
                         formdata.append("pass", $("#ins_pass").val());
                         formdata.append("dni", $("#ins_dni").val());
-                        formdata.append("id_grado", $("#id_grado").val());
 
                         formdata.append("id", id);
                         

@@ -38,7 +38,7 @@ class html_cursos extends f{
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_curso();">Nuevo Curso</span>
+                <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_curso();">Nuevo Curso</span>
                 <h5 class=""><i class="fa fa-bars" aria-hidden="true"></i> Lista de cursos</h5>
                 <small><i class="fa fa-edit"></i> Aquí podrá ver toda la información de todos los cursos</small>
                 <hr>
@@ -49,12 +49,9 @@ class html_cursos extends f{
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Cod</th>
-                                        <th></th>
                                         <th>Curso</th>
-                                        <th>Profesor</th>
-                                        <th>Ciclo</th>
-                                        <th>Grupo</th>
+                                        <th>Grado</th>
+                                        <th>Área</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -66,7 +63,7 @@ class html_cursos extends f{
         </div>
     </div>
     <div class="modal fade" id="formulario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="max-width: 80%;">
+        <div class="modal-dialog" role="document" style="max-width: 50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel">Registrar Bus</h3>
@@ -77,44 +74,28 @@ class html_cursos extends f{
                 <div class="modal-body">
                     <div class="form-group" style="width: 100%;">
                             <div class="form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <label class="bold">Curso</label>
                                     <input id="curso" class="form-control" name="curso" type="text"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="bold">Codigo Curso</label>
-                                    <input id="codigo" class="form-control" name="codigo" type="text"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="bold">Profesor</label>
-                                    <select id="id_profesor" name="id_profesor" class="form-control js-example-basic-single"></select>
                                 </div>
                             </div>
                             <div class="form-row mt-2">
                                 <div class="col-md-6">
-                                    <label class="bold">Ciclo Academico</label><br>
-                                    <select class="form-control" id="id_ciclo">
+                                    <label class="bold">Grado</label><br>
+                                    <select class="form-control" id="id_grado">
                                         <option value="-1">--SELECCIONA--</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="bold">Grupo</label><br>
-                                    <select class="form-control" id="id_grupo">
+                                    <label class="bold">Área</label><br>
+                                    <select class="form-control" id="id_area">
+                                        <option value="-1">--SELECCIONA--</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-row mt-2">
-                                <div class="col-md-12">
-                                    <label class="w-100">Imagen</label>
-                                    <label for="portada" style="font-weight: bold;">Seleccionar imagen
-                                        <input id="portada" class="form-control" name="portada" type="file" style="display: none;"/>
-                                    </label>
-                                </div>
-                                <img src="" id="profile-img-tag" width="200px" style="margin-left: auto;margin-right: auto;" />
-                            </div>
                             <div class="grid"></div>
                             <div class="form-row mt-2 text-right">
-                                <span class="btn btn-danger" type="button" data-dismiss="modal" id="cerrar_formulario_docente">
+                                <span class="btn btn-danger" type="button" data-dismiss="modal" id="cerrar_formulario_curso">
                                     Cancelar
                                 </span>
                                 <button class="btn btn-success ml-1" id="btn_finalizar">Guardar</button>
@@ -141,54 +122,25 @@ class html_cursos extends f{
         $("#portada").change(function(){
             readURL(this);
         });
-        function eliminar_docente(){
-            $("#id_docente").val("");
-        }
-        function eliminar_docente_2(){
-            $("#id_docente_2").val("");
-        }
-        function fill_docentes(){
-            $.post("' . $this->baseurl . INDEX . 'profesores/loadprofesores/", function(response){
+        function llenar_areas(){
+            $.post("' . $this->baseurl . INDEX . 'areas/loadareas/", function(response){
                 var obj = JSON.parse(response);
                 $.each(obj, function(index, val){
-                    $("#id_profesor").append(`<option value="`+val.id+`">`+val.nombres+`</option>`);
+                    $("#id_area").append(`<option value="`+val.id+`">`+val.area+`</option>`);
                 });
             });
         }
-        function llenar_ciclos(){
-            $.post("' . $this->baseurl . INDEX . 'ciclos/loadciclos/", function(data){
+        function llenar_grados(){
+            $.post("' . $this->baseurl . INDEX . 'grados/loadgrados/", function(data){
                 var obj = JSON.parse(data);
 
                 $.each(obj, function(index, val){
-                    $("#id_ciclo").append(`<option value="${val.id}">${val.ciclo}</option>`);
-                });
-            });
-        }
-        function llenar_grupos(id_ciclo, id_grupo){
-            $.post("' . $this->baseurl . INDEX . 'grupos/loadgrupos/", {
-                id_ciclo: id_ciclo
-            }, function(data){
-                var obj = JSON.parse(data);
-
-                $("#id_grupo").empty();
-                $.each(obj, function(index, val){
-                    if(val.id == id_grupo){
-                        $("#id_grupo").append(`<option value="${val.id}" selected>${val.grupo}</option>`);
-                    }else{
-                        $("#id_grupo").append(`<option value="${val.id}">${val.grupo}</option>`);
-                    }
+                    $("#id_grado").append(`<option value="${val.id}">${val.grado}</option>`);
                 });
             });
         }
 
         $(document).ready(function() {
-
-            $("#id_ciclo").on("change", function(){
-                if($(this).val() == "-1" || $(this).val() == -1){
-                }else{
-                    llenar_grupos($(this).val());
-                }
-            });
 
             $(".datepicker").datetimepicker({
                 format: "Y-m-d",
@@ -196,8 +148,8 @@ class html_cursos extends f{
             });
             $.datetimepicker.setLocale("es");
             $(".js-example-basic-single").select2();
-            fill_docentes();
-            llenar_ciclos();
+            llenar_areas();
+            llenar_grados();
             var table = $(".datatable").DataTable({
                 "ajax": {
                     url: "' . $this->baseurl . INDEX . 'cursos/loadcursos/",
@@ -205,23 +157,14 @@ class html_cursos extends f{
                 },
                 "columns": [{
                     "data": "id"
-                }, {
-                    "data": "codigo"
-                }, {
-                    "data": "portada",
-                    "render": function (data) {
-                        return "<a href=\"system/controllers/uploads/"+data+"\" target=\"_blank\"><img src=\"system/controllers/uploads/"+data+"\" style=\"width: 75px; max-width: 100px;\"></a>";
-                    }
                 },{
                     "data": "curso"
                 }, {
-                    "data": "nombres"
+                    "data": "grado"
                 }, {
-                    "data": "ciclo"
+                    "data": "area"
                 }, {
-                    "data": "grupo"
-                }, {
-                    "defaultContent": "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" class=\"mb-1 w-100 btn btn-warning btn-sm\" style=\"display: block;\"><i class=\"fa fa-pencil\"></i></button>"+"<button id=\"btn_eliminar\" class=\"btn w-100 btn-danger btn-sm\" style=\"display: block;\"><i class=\"fa fa-trash\"></i></button>"
+                    "defaultContent": "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" class=\"mb-1 w-100 btn btn-outline-warning btn-sm\" style=\"display: block;\"><i class=\"fa fa-edit\"></i></button>"+"<button id=\"btn_eliminar\" class=\"btn w-100 btn-outline-danger btn-sm\" style=\"display: block;\"><i class=\"fa fa-trash\"></i></button>"
                 }, ],
                 "language": {
                     "url": "'.$this->baseurl.'includes/datatables/Spanish.json"
@@ -361,28 +304,22 @@ class html_cursos extends f{
             }, function(response){
                 var obj = JSON.parse(response);
                 $("#curso").val(obj.curso);
-                $("#codigo").val(obj.codigo);
-
-                $("#profile-img-tag").attr("src", "system/controllers/uploads/" + obj.portada);
                 
-                $("#id_profesor option[value="+obj.id_profesor+"]").prop("selected", true);
-                $("#id_ciclo option[value="+obj.id_ciclo+"]").prop("selected", true);
-                llenar_grupos(obj.id_ciclo, obj.id_grupo);
-                
+                /*$("#id_profesor option[value="+obj.id_profesor+"]").prop("selected", true);
+                $("#id_ciclo option[value="+obj.id_ciclo+"]").prop("selected", true);*/
+                $("#id_area").val(obj.id_area);
+                $("#id_grado").val(obj.id_grado);
 
                 $("#btn_finalizar").text("Actualizar");
                 $("#btn_finalizar").attr("onclick", "actualizar_curso("+obj.id+");");
             });
         }
         function registrar_curso(){
-            var file_data = $("#portada").prop("files")[0];
             var form_data = new FormData();
-            form_data.append("file1", file_data);
             form_data.append("curso", $("#curso").val());
-            form_data.append("id_profesor", $("#id_profesor").val());
-            form_data.append("id_ciclo", $("#id_ciclo").val());
-            form_data.append("id_grupo", $("#id_grupo").val());
-            form_data.append("codigo", $("#codigo").val());
+            form_data.append("id_area", $("#id_area").val());
+            form_data.append("id_grado", $("#id_grado").val());
+            form_data.append("estado", 0);
             
             $(".grid").addClass("loading");
             
@@ -398,26 +335,22 @@ class html_cursos extends f{
                     table = $(".datatable").DataTable();
                     table.ajax.reload();
                     alertify.notify("<strong>Curso</strong> agregado correctamente.", "custom-black", 3, function() {});
-                    $("#cerrar_formulario_docente").click();
+                    $("#cerrar_formulario_curso").click();
                     $(".grid").removeClass("loading");
                 },error: function() {
                     table = $(".datatable").DataTable();
                     table.ajax.reload();
                     alertify.notify("<strong>Curso</strong> agregado correctamente.", "custom-black", 3, function() {});
-                    $("#cerrar_formulario_docente").click();
+                    $("#cerrar_formulario_curso").click();
                     $(".grid").removeClass("loading");
                 }
             });
         }
         function actualizar_curso(id){
-            var file_data = $("#portada").prop("files")[0];
             var form_data = new FormData();
-            form_data.append("file1", file_data);
             form_data.append("curso", $("#curso").val());
-            form_data.append("id_profesor", $("#id_profesor").val());
-            form_data.append("id_ciclo", $("#id_ciclo").val());
-            form_data.append("id_grupo", $("#id_grupo").val());
-            form_data.append("codigo", $("#codigo").val());
+            form_data.append("id_area", $("#id_area").val());
+            form_data.append("id_grado", $("#id_grado").val());
 
             form_data.append("id", id);
             
@@ -435,46 +368,17 @@ class html_cursos extends f{
                     table = $(".datatable").DataTable();
                     table.ajax.reload();
                     alertify.notify("<strong>Curso</strong> modificado correctamente.", "custom-black", 3, function() {});
-                    $("#cerrar_formulario_docente").click();
+                    $("#cerrar_formulario_curso").click();
                     $(".grid").removeClass("loading");
                 },error: function() {
                     table = $(".datatable").DataTable();
                     table.ajax.reload();
                     alertify.notify("<strong>Curso</strong> modificado correctamente.", "custom-black", 3, function() {});
-                    $("#cerrar_formulario_docente").click();
+                    $("#cerrar_formulario_curso").click();
                     $(".grid").removeClass("loading");
                 }
             });
         }
-        $(function() {
-            $("#form_modificar").on("submit", function(e) {
-                e.preventDefault();
-                var f = $(this);
-                var metodo = f.attr("method");
-                var url = f.attr("action");
-                var formData = new FormData(this);
-                formData.append("dato", "valor");
-                $.ajax({
-                    url: url,
-                    type: metodo,
-                    dataType: "html",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {},
-                    success: function(response) {
-                        f[0].reset();
-                        table = $(".datatable").DataTable();
-                        table.ajax.reload();
-                        alertify.modalcursos().close();
-                        alertify.notify("<strong>Curso</strong> modificada correctamente.", "custom-black", 3, function() {});
-                        $("#id_grado option[value=0]").attr("selected", true);
-                    },
-                    error: function() {},
-                });
-            });
-        });
         
         </script>
         <script type="text/javascript">

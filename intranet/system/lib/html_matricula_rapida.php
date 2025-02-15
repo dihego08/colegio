@@ -12,7 +12,7 @@ class html_matricula_rapida extends f{
                 },select:true},options:{basic:false,title:a,maximizable:false,resizable:false,padding:true,modal:true,transition:false,}};},settings:{selector:undefined}};
                 });}
             </script>
-            <div class="container-fluid" style="margin-top: 56px;">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <!--<span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_alumno();">Nuevo Alumno</span>-->
@@ -20,13 +20,13 @@ class html_matricula_rapida extends f{
                             <i class="fa fa-bars" aria-hidden="true"></i> Nueva Matrícula
                         </h5>
                         <small>
-                            <i class="far fa-edit"></i> Registro de Nueva Matrícula
+                            <i class="fa fa-edit"></i> Registro de Nueva Matrícula
                         </small>
                         <hr>         
                         <div class="container" style="max-width: 100%;">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Filtros de Búsqueda</h4>
+                                    <h4 class="mt-0">Filtros de Búsqueda</h4>
                                 </div>
                                 <div class="col-md-6">
                                     <label>DNI de Alumno</label>
@@ -37,13 +37,11 @@ class html_matricula_rapida extends f{
                                     <input type="text" class="form-control ui-autocomplete-input" id="apellidos" name="apellidos" placeholder="Ingrese Nombres o Apellidos">
                                 </div>
                             </div>
-                            <div class="col-12" style="margin-top: 10px;">
-                                <!--<span class="btn btn-success" style=" width: 100%;" onclick="buscar();">Buscar</span>-->
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 15px;">
+                <hr class="w-100">
+                <div class="row">
                     <div class="col-md-4" style="border-right: solid rgba(0, 0, 0, 0.3); border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
                         <div id="div_historial" style="width: 100%; text-align: center;">
                         </div>
@@ -52,19 +50,15 @@ class html_matricula_rapida extends f{
                         <h4 style="text-align: center;">Registrar Matrícula</h4>
                         <hr>
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                             <input type="hidden" id="cupos_2">
                                 <label>Grado</label>
                                 <select class="form-control" id="id_grado" name="id_grado">
                                     <option value="0">SELECCIONA...</option>
                                 </select>
                             </div>
-                            <div class="col-md-2" style="text-align: center;">
-                                <label>Cupos</label>
-                                <h2><span id="sp_cupo" class="badge badge-warning"></span></h2>
-                            </div>
                         </div>
-                        <div class="row" style="margin-top: 15px;">
+                        <div class="row">
                             <div class="col-md-12" style="text-align: center; margin-bottom: 5px;">
                                 <span class="btn btn-success" onclick="registrar_matricula();">Registrar Matrícula</span>
                             </div>
@@ -96,11 +90,10 @@ class html_matricula_rapida extends f{
                                     $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">Sin Historial de Matrícula</h5>`);
                                 }else{
                                     var obj = JSON.parse(responseText);
-                                    $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">`+ui.item.value+` - Historial de Matrícula</h5>`);
+                                    $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">`+ui.item.value+` - <strong>Historial de Matrícula</strong></h5>`);
                                     $.each(obj, function(index, val){
-                                        $("#div_historial").append(`<span style="font-size: 15px; margin-bottom: 5px;" class="badge badge-pill badge-primary">`+val.grado+` - `+val.fecha+`</span>`);
+                                        $("#div_historial").append(`<span style="font-size: 15px; margin-bottom: 5px; text-wrap: auto;" class="badge badge-pill badge-primary">`+val.grado+` - `+val.fecha+`</span>`);
                                     });
-                                    //var nn = parseInt() + parseInt(1);
                                 }
                             });
                         }
@@ -120,9 +113,9 @@ class html_matricula_rapida extends f{
                                     $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">Sin Historial de Matrícula</h5>`);
                                 }else{
                                     var obj = JSON.parse(responseText);
-                                    $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">`+ui.item.value+` - Historial de Matrícula</h5>`);
+                                    $("#div_historial").append(`<h5 style="text-align: center; margin-bottom:10px;">`+ui.item.value+` - <strong>Historial de Matrícula</strong></h5>`);
                                     $.each(obj, function(index, val){
-                                        $("#div_historial").append(`<span style="font-size: 15px;" class="badge badge-pill badge-primary">`+val.grado+` - `+val.fecha+`</span>`);
+                                        $("#div_historial").append(`<span style="font-size: 15px; text-wrap: auto;" class="badge badge-pill badge-primary">`+val.grado+` - `+val.fecha+`</span>`);
                                     });
                                     //var nn = parseInt() + parseInt(1);
                                 }
@@ -137,20 +130,6 @@ class html_matricula_rapida extends f{
                             });
                         });
                     }
-                    $("#id_grado").on("change", function(){
-                        if($("#id_grado").val() == 0){
-                        $("#sp_cupo").text("");
-                        }else{
-                            var id_grado = $("#id_grado").val();
-                            $.post("' . $this->baseurl . INDEX . 'grados/editar/", {
-                                id: id_grado
-                            }, function(responseText){
-                                var obj = JSON.parse(responseText);
-                                $("#cupos_2").val(obj[0].cupos_2);
-                                $("#sp_cupo").text(parseInt(obj[0].cupos) - parseInt(obj[0].cupos_2));
-                            });
-                        }
-                    });
                 });
                 function registrar_matricula(){
                     var dd = parseInt($("#cupos_2").val()) + parseInt(1);

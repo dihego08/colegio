@@ -112,49 +112,37 @@ class Header
                     <li class="nav-item">
                         <a id="" class="nav-link" href="#" onclick="location.href = \'' . $baseurl . '\'">Inicio</a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a id="" class="nav-link" href="' . $baseurl . INDEX . 'notas/">Notas Alumnos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'notas_2/">Notas x Alumno</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a id="" class="nav-link" href="' . $baseurl . INDEX . 'informe/">Informe Académico</a>
                     </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'asistencias_2/">Asistencias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'inasistencias/">Inasistencias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'asistencia_diaria/">Reporte Inasistencias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'asistencia_diaria_2/">Reporte Asistencias</a>
-                    </li>
-                    <!--<li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'aulas/">Asignación de Aulas</a>
-                    </li>-->
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'clasificacion_alumnos/">Clasificación de Alumnos</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'asistencias_new/">Asistencias Lectora</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'videos/">Vídeos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'biblioteca/">Biblioteca</a>
-                    </li>
                     
-                    <li class="nav-item">
-                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'configuracion_carnet/">Configuracion Carnet</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Matriculas </a>
+                        <div class="dropdown-menu">
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'matricula_rapida/">Matricular Alumno</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'detalle_matricula/">Detalle Matricula</a>
+                        </div>
                     </li>
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Notas </a>
+                        <div class="dropdown-menu">
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'notas/">Configuración Notas</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'notas_2/">Notas x Alumno</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Asistencias </a>
+                        <div class="dropdown-menu">
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'asistencias_2/">Asistencias</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'inasistencias/">Inasistencias</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'asistencia_diaria/">Reporte Inasistencias</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'asistencia_diaria_2/">Reporte Asistencias</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'asistencias_new/">Asistencias Lectora</a>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Control </a>
                         <div class="dropdown-menu">
@@ -173,24 +161,16 @@ class Header
                             <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'universidades/">Universidades</a>
                             <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'proveedores/">Proveedores</a>-->
                             <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'gastos/">Gastos</a>
-                            <!--<a id="" class="nav-link" href="' . $baseurl . INDEX . 'aulas/">Aulas</a>-->
-                            <a id="" class="nav-link" href="' . $baseurl . INDEX . 'grados/">Grados</a>
+                            <!--<a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'aulas/">Aulas</a>-->
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'areas/">Áreas</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'grados/">Grados</a>
+                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'cursos/">Cursos</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Reportes </a>
                         <div class="dropdown-menu">
                             <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'ingresos_gastos/">Ingresos vs Gastos</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Pagina Web </a>
-                        <div class="dropdown-menu">
-                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'brochure/">Brochure</a>
-                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'slider/">Slider</a>
-                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'videos_web/">Videos</a>
-                            <!--<a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'precios/">Precios</a>
-                            <a id="" class="dropdown-item" href="' . $baseurl . INDEX . 'facilidades/">Facilidades</a>-->
                         </div>
                     </li>
                     

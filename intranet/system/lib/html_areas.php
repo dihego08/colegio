@@ -12,10 +12,10 @@ class html_areas extends f{
                 },select:true},options:{basic:false,title:a,maximizable:false,resizable:false,padding:true,modal:true,transition:false,}};},settings:{selector:undefined}};
                 });}
             </script>
-            <div class="container-fluid" style="margin-top: 56px;">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_area();">Nueva area</span>
+                        <span style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#formulario" id="btn_nuevo" onclick="nuevo_area();">Nueva area</span>
                         <h5 class="">
                             <i class="fa fa-bars" aria-hidden="true"></i> Lista de Areas de Conocimiento
                         </h5>
@@ -44,10 +44,10 @@ class html_areas extends f{
             </div>
             <!----------------------------------------------------------------------->
             <div class="modal fade" id="formulario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style="max-width: 80%;">
+                <div class="modal-dialog" role="document" style="max-width: 50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLabel">Nueva area</h3>
+                            <h3 class="modal-title" id="exampleModalLabel">Nueva Área</h3>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -95,20 +95,15 @@ class html_areas extends f{
                         processData: false,
                         beforeSend: function() {},
                         success: function(data) {
-                            if (data == 1) {
-                                alertify.notify("Campo <strong>código interno</strong> vacío.", "custom", 4, function() {});
-                            }
-                            if (data == 2) {
-                                alertify.notify("Campo <strong>nombre</strong> vacío.", "custom", 4, function() {});
-                            }
-                            if (data == 0) {
+                            data = JSON.parse(data);
+                            if(data.Result == "OK"){
                                 f[0].reset();
                                 table = $(".datatable").DataTable();
                                 table.ajax.reload();
                                 alertify.notify("Se agrego el <strong>area</strong> correctamente.", "custom-black", 4, function() {})
                                 limpiar_formulario();
                                 $("#cerrar_formulario_area").click();
-                            };
+                            }
                         },
                         error: function() {},
                     });
@@ -131,9 +126,9 @@ class html_areas extends f{
                         },  {
                             "data": "area"
                         }, {
-                            "defaultContent": "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" class=\"btn btn-info btn-sm\" ><i class=\"fas fa-pencil-alt\"></i></button>"
+                            "defaultContent": "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" class=\"btn btn-outline-warning btn-sm\" ><i class=\"fa fa-edit\"></i></button>"
                         }, {
-                            "defaultContent": "<button id=\"btn_eliminar\" class=\"btn btn-danger btn-sm\"><i class=\"far fa-trash-alt\"></i></button>"
+                            "defaultContent": "<button id=\"btn_eliminar\" class=\"btn btn-outline-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>"
                         }, ],
                         "language": {
                             "url": "'.$this->baseurl.'includes/datatables/Spanish.json"

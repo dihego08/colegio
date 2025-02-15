@@ -36,13 +36,13 @@ class alumnos extends f
 	}
 	public function get_alumno_dni()
 	{
-		$sql = "SELECT * FROM alumnos WHERE dni LIKE '%" . $_GET['term'] . "%'";
-		$result = $this->modelo2->select('', '', '', $sql);
+		$sql = "SELECT * FROM usuarios WHERE dni LIKE '%" . $_GET['term'] . "%'";
+		$result = json_decode($this->modelo2->run_query($sql, false));
 		$values = array();
 		foreach ($result as $key) {
 			$values[] = array(
-				'id' => $key['id'],
-				'value' => $key['apellidos'] . ", " . $key['nombres']
+				'id' => $key->id,
+				'value' => $key->apellidos . ", " . $key->nombres
 			);
 		}
 		echo json_encode($values);
@@ -57,13 +57,13 @@ class alumnos extends f
 	}
 	public function get_alumno()
 	{
-		$sql = "SELECT * FROM alumnos WHERE apellidos LIKE '%" . $_GET['term'] . "%' OR nombres like '%" . $_GET['term'] . "%'";
-		$result = $this->modelo2->select('', '', '', $sql);
+		$sql = "SELECT * FROM usuarios WHERE apellidos LIKE '%" . $_GET['term'] . "%' OR nombres like '%" . $_GET['term'] . "%'";
+		$result = json_decode($this->modelo2->run_query($sql, false));
 		$values = array();
 		foreach ($result as $key) {
 			$values[] = array(
-				'id' => $key['id'],
-				'value' => $key['apellidos'] . ", " . $key['nombres']
+				'id' => $key->id,
+				'value' => $key->apellidos . ", " . $key->nombres
 			);
 		}
 		echo json_encode($values);
@@ -81,8 +81,7 @@ class alumnos extends f
 	}
 	public function loadalumnos()
 	{
-		/*$sql = "SELECT us.*, g.grupo, a.area, u.universidad, ci.ciclo, c.carrera FROM usuarios as us, grupos as g, areas as a, universidades as u, carreras as c, ciclos as ci WHERE us.id_grupo = g.id AND g.id_ciclo = ci.id AND us.id_carrera = c.id AND c.id_universidad = u.id AND ci.id_universidad = u.id AND c.id_area = a.id";*/
-		$sql = "SELECT us.* , g.grado FROM usuarios as us left join grados as g on us.id_grado = g.id ;";
+		$sql = "SELECT us.* FROM usuarios as us;";
 
 		$alumnos = json_decode($this->modelo2->run_query($sql, false));
 

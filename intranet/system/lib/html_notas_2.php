@@ -1,13 +1,16 @@
 <?php
-    
-class html_notas_2 extends f{
+
+class html_notas_2 extends f
+{
     private $baseurl = "";
 
-    function html_notas_2(){
+    function html_notas_2()
+    {
         $this->load()->lib_html("Table", false);
         $this->baseurl = BASEURL;
     }
-    function container(){
+    function container()
+    {
         $r = '
             <style>
                 .bold{
@@ -34,23 +37,35 @@ class html_notas_2 extends f{
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <div class="w-100 text-right">
+                        <!--<div class="w-100 text-right">
                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#busbienes">
                                 Cargar Excel Notas
                             </button>
                             <button style="margin-bottom: 10px;" id="btn_excel" hidden class="btn btn-sm btn-info hideprint" onclick="window.print()">
                                 <span >Imprimir</span>
                             </button>
-                        </div>
+                        </div>-->
                         <h5 class="">
                             <i class="fa fa-bars" aria-hidden="true"></i> Compendio de notas del alumno
                         </h5>
                         <small>
                             <i class="fa fa-edit"></i> Seleccionar Alumno para cargar el listado de notas.
                         </small>
-                        <select class="form-control mt-2 mb-1" id="id_alumno">
-                            <option value="-1">--SELECCIONAR--</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Alumno</label>
+                                <select class="form-control mt-2 mb-1" id="id_alumno">
+                                    <option value="-1">--SELECCIONAR--</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Curso</label>
+                                <select class="form-control mt-2 mb-1" id="id_curso">
+                                    <option value="-1">--SELECCIONAR--</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <hr>         
                         <div class="container">
                             <div class="row">
@@ -58,10 +73,10 @@ class html_notas_2 extends f{
                                     <table  class="datatable table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Alumno</th>
-                                                <th>Examen</th>
-                                                <th>Fecha</th>
-                                                <th>Puntaje</th>
+                                                <th>Descripción</th>
+                                                <th>Porcentaje</th>
+                                                <th>Nota</th>
+                                                <th>Cálculo</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -109,11 +124,26 @@ class html_notas_2 extends f{
                         });
                     });
                 }
+                function llenar_cursos(id_alumno){
+                    $.post("' . $this->baseurl . INDEX . 'cursos/loadcursosbyalumno/", {
+                        id_alumno: id_alumno
+                    }, function(response){
+                        var obj = JSON.parse(response);
+                        $("#id_curso").empty();
+                        $("#id_curso").append(`<option value="0">--SELECCIONAR--</option>`);
+                        $.each(obj.Records, function(index, val){
+                            $("#id_curso").append(`<option value="${val.id}">${val.curso}</option>`);
+                        });
+                    });
+                }
                 $(document).ready(function() {
                     llenar_alumnos();
                     $("#id_alumno").select2();
 
                     $("#id_alumno").on("change", function(){
+                        llenar_cursos($(this).val());
+                    });
+                    $("#id_curso").on("change", function(){
                         table = $(".datatable").DataTable();
                         table.ajax.reload();
    
@@ -121,7 +151,6 @@ class html_notas_2 extends f{
    							$("#btn_excel").attr("hidden", true);
    						}else{
    							$("#btn_excel").removeAttr("hidden");
-   							//$("#btn_excel").attr("href", "system/lib/exportar_excel_notas.php?id_alumno="+$(this).val());
    						}
                     });
 
@@ -131,28 +160,30 @@ class html_notas_2 extends f{
                             "dataSrc": "",
                             "data": function(d) {
                                 d.id_alumno = $("#id_alumno").val();
+                                d.id_curso = $("#id_curso").val();
                             },
                         },
                         "columns": [{
-                            "data": "alumno"
-                        }, {
                             "data": "identificador"
                         }, {
-                            "data": "fecha"
+                            "data": "porcentaje"
                         }, {
-                            "data": "examen",
+                            "data": "nota",
                             "render": function(a, b, c){
-                                return `<input type="text" class="form-control" id="txt_examen_${c.id}" value="${a}">`
+                                return `<input type="text" class="form-control" id="txt_examen_${c.id}" value="${$.trim(a)}">`
+                            }
+                        },  {
+                            "data": "nota",
+                            "render": function(a, b, c){
+                                return `<span>${a*(c.porcentaje/100)}</span>`
                             }
                         }, {
-                            //"data": "examen",
                             "render": function(a, b, c){
-                                //console.log(c);
                                 return `<span class="btn btn-sm btn-success" title="Actualizar Nota" onclick="actualizar_nota(${c.id});"><i class="fa fa-check"></i></span>`;
                             }
                         }, ],
                         "language": {
-                            "url": "'.$this->baseurl.'includes/datatables/Spanish.json"
+                            "url": "' . $this->baseurl . 'includes/datatables/Spanish.json"
                         },
                         "lengthMenu": [
                             [10, 15, 20, -1],
@@ -190,7 +221,7 @@ class html_notas_2 extends f{
                 function guardar_notas(id_alumno, id){
                     var promedio = parseFloat($("#examen_"+id_alumno).val() * 0.60) + parseFloat($("#informe_"+id_alumno).val() * 0.30) + parseFloat($("#asistencias_"+id_alumno).val() * 0.10);
                     $("#promedio_"+id_alumno).val(promedio.toFixed(2));
-                    $.post("'. $this->baseurl . INDEX . 'notas/editarBD", {
+                    $.post("' . $this->baseurl . INDEX . 'notas/editarBD", {
                         id_alumno: id_alumno,
                         examen: $("#examen_"+id_alumno).val(),
                         informe: $("#informe_"+id_alumno).val(),
@@ -217,7 +248,9 @@ class html_notas_2 extends f{
                         dataType: "html",
                         data: {
                             "id": id,
-                            "examen": $("#txt_examen_"+id).val()
+                            "id_curso": $("#id_curso").val(),
+                            "id_alumno": $("#id_alumno").val(),
+                            "nota": $("#txt_examen_"+id).val()
                         },
                         success: function(data) {
                             var obj = JSON.parse(data);
@@ -278,9 +311,7 @@ class html_notas_2 extends f{
                     ajax.open("POST", "' . $this->baseurl . INDEX . 'notas_2/cargar_excel");
                     ajax.send(form_data);
                 }
-            </script>';     
-            return $r;
-        }
+            </script>';
+        return $r;
     }
-?>
-
+}
