@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>' . $data["title"] . '</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="' . $baseurl . 'includes/img/icons/favicon.png" />
+<script type="text/javascript">
+function showLoading() { $(".loading").css("display", "inline"); }
+
+function hideLoading() { $(".loading").css("display", "none"); }
+$(function() {
+    $(".myMenu").buildMenu({
+        template: "menuVoices.html",
+        additionalData: "pippo=1",
+        menuWidth: 200,
+        openOnRight: false,
+        menuSelector: ".menuContainer",
+        iconPath: "' . $baseurl . 'includes/css/ico/",
+        hasImages: true,
+        fadeInTime: 100,
+        fadeOutTime: 300,
+        adjustLeft: 2,
+        minZindex: "auto",
+        adjustTop: 10,
+        opacity: .95,
+        shadow: false,
+        shadowColor: "#ccc",
+        hoverIntent: 0,
+        openOnClick: false,
+        closeOnMouseOut: true,
+        closeAfter: 500,
+        submenuHoverIntent: 200
+    });
+    $(".vertMenu").buildMenu({
+        template: "menuVoices.html",
+        menuWidth: 170,
+        openOnRight: true,
+        menuSelector: ".menuContainer",
+        iconPath: "' . $baseurl . 'includes/css/ico/",
+        hasImages: true,
+        fadeInTime: 200,
+        fadeOutTime: 200,
+        adjustLeft: 0,
+        adjustTop: 0,
+        opacity: .95,
+        openOnClick: false,
+        minZindex: 200,
+        shadow: false,
+        hoverIntent: 300,
+        submenuHoverIntent: 300,
+        closeOnMouseOut: true
+    });
+    $(document).buildContextualMenu({
+        template: "menuVoices.html",
+        menuWidth: 200,
+        overflow: 2,
+        menuSelector: ".menuContainer",
+        iconPath: "' . $baseurl . 'includes/css/ico/",
+        hasImages: false,
+        fadeInTime: 100,
+        fadeOutTime: 100,
+        adjustLeft: 0,
+        adjustTop: 0,
+        opacity: .99,
+        closeOnMouseOut: false,
+        onContextualMenu: function(o, e) {},
+        shadow: false
+    });
+});
+</script>
+</head>

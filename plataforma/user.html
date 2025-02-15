@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link href="../img/logo.ico" rel="shortcut icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Editar Perfil de Usuario - Nabaver Plataforma Virtual</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/stylo.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <h4 class="simple-text mt-0 mb-1" id="user_name">
+                        
+                    </h4>
+                    <span class="w-100 text-center" style="display: block;" id="career_name"></span>
+                    <small class="w-100 text-center" style="display: block; text-transform: uppercase;" id="area_name"></small>
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="index.html">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./user.html">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Mi Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./cursos.html">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Mis Cursos</p>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a class="nav-link" href="./asistencias.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Asistencias</p>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a class="nav-link" href="./entregas.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Mis Entregas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./biblioteca.html">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>Biblioteca</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./examen.html">
+                            <i class="nc-icon nc-ruler-pencil"></i>
+                            <p>Ranking</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./estadisticas">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Estadisticas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./logout.php">
+                            <i class="nc-icon nc-spaceship"></i>
+                            <p>Cerrar Sesion</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="logo"><img class="w-100" src="../img/logo.png" alt="" style="border-radius: 4px; box-shadow: 0px 2px 2px #313131;" /></div>
+                <!--<div class="logo"><img class="w-100" src="assets/img/g2804.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3775.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3853.png" alt="" /></div>-->
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <span class="navbar-brand"> Editar Perfil </span>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Editar Perfil</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Usuario</label>
+                                                <input type="text" class="form-control" placeholder="Usuario" id="usuario">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Correo Electrónico</label>
+                                                <input type="email" class="form-control" placeholder="Correo" id="correo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Nombres</label>
+                                                <input type="text" class="form-control" placeholder="Nombres" id="nombres">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label>Apellidos</label>
+                                                <input type="text" class="form-control" placeholder="Apellidos" id="apellidos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Direccion</label>
+                                                <input type="text" class="form-control" placeholder="Direccion" id="direccion">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label>Celular</label>
+                                                <input type="text" class="form-control" placeholder="Celular" id="telefono">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nueva Contraseña</label>
+                                                <input type="password" class="form-control" placeholder="Nueva Contraseña" id="pass" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Repetir Contraseña</label>
+                                                <input type="password" class="form-control" placeholder="Repetir Contraseña" id="pass_2" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-1">
+                                            <div class="alert alert-danger">
+                                                <strong>Al dejar en blanco el campo "Nueva Contraseña" se mantendra la contraseña anterior.</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Sobre Mi</label>
+                                                <textarea rows="4" cols="80" class="form-control" id="sobre_mi" placeholder="Cuentanos Sobre Ti"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="w-100">Imagen de Perfil</label>
+                                                <input type="file" name="" id="foto" class="form-control">
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label class="w-100">Universidad</label>
+                                                    <input type="text" id="universidad" disabled name="" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="w-100">Carrera a la que postula</label>
+                                                    <select class="form-control" id="id_carrera"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <progress id="progressBar" class="mt-2" value="0" max="100" style="width:100%;"></progress>
+                                            <p id="status"></p>
+                                            <p id="loaded_n_total"></p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info btn-fill pull-right" onclick="update_profile();">Actualizar Perfil</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-user">
+                                <div class="card-image">
+                                    <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <div class="author">
+                                        <a href="#">
+                                            <img class="avatar border-gray" src="" alt="..." id="edit_user_image">
+                                            <h5 class="title" id="edit_user_name"></h5>
+                                        </a>
+                                        <p class="description" id="edit_user_user">
+                                            
+                                        </p>
+                                    </div>
+                                    <p class="description text-center" id="edit_user_about">
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="button-container mr-auto ml-auto">
+                                    <button href="#" class="btn btn-simple btn-link btn-icon">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </button>
+                                    <button href="#" class="btn btn-simple btn-link btn-icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </button>
+                                    <button href="#" class="btn btn-simple btn-link btn-icon">
+                                        <i class="fa fa-google-plus-square"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <p class="copyright text-center">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="https://softluttion.com">Softluttion</a>, made with love for a better web
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  Chartist Plugin  -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    
+<script>
+    function _(el){
+        return document.getElementById(el);
+    }
+    function uploadFile(){
+        var file = _("file1").files[0];
+        var formdata = new FormData();
+        formdata.append("file1", file);
+        formdata.append("id_curso", $("#id_curso").val());
+        formdata.append("id_tema", $("#id_tema").val());
+        formdata.append("tarea", $("#tarea").val());
+        formdata.append("fecha_entrega", $("#fecha_entrega").val());
+        formdata.append("parAccion", "guardar_tarea");
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.addEventListener("load", completeHandler, false);
+        ajax.addEventListener("error", errorHandler, false);
+        ajax.addEventListener("abort", abortHandler, false);
+        ajax.open("POST", "../php/tarea.php");
+        ajax.send(formdata);
+    }
+    function progressHandler(event){
+        _("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+        var percent = (event.loaded / event.total) * 100;
+        _("progressBar").value = Math.round(percent);
+    }
+    function completeHandler(event){
+        var obj = JSON.parse(event.target.response);
+        if(obj.Result == "OK"){
+            bootbox.alert("Realizado Correctamente");
+            load_data();
+        }else{
+            bootbox.alert("Algo ha salido mal.");
+        }
+        
+        _("progressBar").value = 0;
+    }
+    function errorHandler(event){
+        _("status").innerHTML = "Upload Failed";
+    }
+    function abortHandler(event){
+        _("status").innerHTML = "Upload Aborted";
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        get_data();
+        load_data();
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#edit_user_image").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#foto").change(function(){
+            readURL(this);
+        });
+    });
+    function llenar_carreras(id_universidad, id_carrera) {
+        $.post('logic/servicios.php?parAccion=get_carreras', {
+            id_universidad: id_universidad
+        }, function(data) {
+            var obj = JSON.parse(data);
+
+            $("#universidad").val(obj.universidad);
+
+            $("#id_carrera").empty();
+            $.each(obj.carreras, function(index, val) {
+                if(val.id == id_carrera){
+                    $("#id_carrera").append(`<option value="${val.id}" selected>${val.carrera}</option>`);
+                }else{
+                    $("#id_carrera").append(`<option value="${val.id}">${val.carrera}</option>`);
+                }
+            });
+        });
+    }
+    function get_data() {
+        $.post('logic/servicios.php?parAccion=get_data', function (data) {
+            var obj = JSON.parse(data);
+
+            if (obj.user_name == null || obj.user_name == "" || obj.user_name == undefined) {
+                //location.href = "../";
+                location.href = "../login/login_a.php";
+            } else {
+                $("#user_name").text(obj.user_name);
+                $("#career_name").text(obj.carrera);
+                $("#area_name").text(obj.area);
+            }
+        });
+    }
+    function load_data(){
+        $.post('logic/servicios.php?parAccion=load_data', function(data) {
+            var obj = JSON.parse(data);
+
+            $("#usuario").val(obj.usuario);
+            $("#correo").val(obj.correo);
+            $("#nombres").val(obj.nombres);
+            $("#apellidos").val(obj.apellidos);
+            $("#direccion").val(obj.direccion);
+            $("#sobre_mi").val(obj.sobre_mi);
+            $("#telefono").val(obj.telefono);
+
+            llenar_carreras(obj.id_universidad, obj.id_carrera)
+
+            $("#foto").val("");
+
+            if(obj.foto == "" || obj.foto == null){
+                $("#edit_user_image").attr('src', '/img/blank-profile-picture-973460_1280.png');
+            }else{
+                $("#edit_user_image").attr('src', '/intranet/system/controllers/uploads/'+obj.foto);
+            }
+
+            $("#edit_user_name").text(obj.nombres);
+            $("#edit_user_user").text(obj.usuario);
+            $("#edit_user_about").text(obj.sobre_mi);
+        });
+    }
+    function update_profile(){
+        var contra1 = $("#pass").val();
+        var contra2 = $("#pass_2").val();
+        if(contra1 == "" && contra2 == ""){
+
+            var formdata = new FormData();
+
+            var file_data = $("#foto").prop("files")[0];
+
+            formdata.append("file1", file_data);
+            formdata.append("usuario", $("#usuario").val());
+            formdata.append("correo", $("#correo").val());
+            formdata.append("nombres", $("#nombres").val());
+            formdata.append("apellidos", $("#apellidos").val());
+            formdata.append("direccion", $("#direccion").val());
+            formdata.append("sobre_mi", $("#sobre_mi").val());
+            formdata.append("pass", $("#pass").val());
+            formdata.append("telefono", $("#telefono").val());
+            formdata.append("id_carrera", $("#id_carrera").val());
+            
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", completeHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.addEventListener("abort", abortHandler, false);
+            ajax.open("POST", "logic/servicios.php?parAccion=update_profile");
+            ajax.send(formdata);
+        }else{
+            if(contra1 == contra2){
+
+                var formdata = new FormData();
+
+                var file_data = $("#foto").prop("files")[0];
+
+                formdata.append("file1", file_data);
+                formdata.append("usuario", $("#usuario").val());
+                formdata.append("correo", $("#correo").val());
+                formdata.append("nombres", $("#nombres").val());
+                formdata.append("apellidos", $("#apellidos").val());
+                formdata.append("direccion", $("#direccion").val());
+                formdata.append("sobre_mi", $("#sobre_mi").val());
+                formdata.append("pass", $("#pass").val());
+                formdata.append("telefono", $("#telefono").val());
+                formdata.append("id_carrera", $("#id_carrera").val());
+                
+                var ajax = new XMLHttpRequest();
+                ajax.upload.addEventListener("progress", progressHandler, false);
+                ajax.addEventListener("load", completeHandler, false);
+                ajax.addEventListener("error", errorHandler, false);
+                ajax.addEventListener("abort", abortHandler, false);
+                ajax.open("POST", "logic/servicios.php?parAccion=update_profile");
+                ajax.send(formdata);
+            }else{
+                alert("Las contraseñas no coinciden");
+            }
+        }
+    }
+</script>
+</html>

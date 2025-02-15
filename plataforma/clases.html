@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link href="../img/logo.ico" rel="shortcut icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Contenido del Curso - La Clave Academia :: Plataforma Virtual</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/stylo.css" rel="stylesheet" />
+    <style>
+    	.iframe_div > iframe{
+    		width: 100%;
+    	}
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <h4 class="simple-text mt-0 mb-1" id="user_name">
+                        
+                    </h4>
+                    <span class="w-100 text-center" style="display: block;" id="career_name"></span>
+                    <small class="w-100 text-center" style="display: block; text-transform: uppercase;" id="area_name"></small>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./user.html">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Mi Perfil</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./cursos.html">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Mis Cursos</p>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a class="nav-link" href="./asistencias.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Asistencias</p>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a class="nav-link" href="./entregas.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Mis Entregas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./biblioteca.html">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>Biblioteca</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./examen.html">
+                            <i class="nc-icon nc-ruler-pencil"></i>
+                            <p>Ranking</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./estadisticas">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Estadisticas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./ciclos_anteriores">
+                            <i class="nc-icon nc-refresh-02"></i>
+                            <p>Ciclos Anteriores</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./logout.php">
+                            <i class="nc-icon nc-spaceship"></i>
+                            <p>Cerrar Sesion</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="logo"><img class="w-100" src="../img/logo.png" alt="" style="border-radius: 4px; box-shadow: 0px 2px 2px #313131;" /></div>
+                <!--<div class="logo"><img class="w-100" src="assets/img/g2804.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3775.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3853.png" alt="" /></div>-->
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <span class="navbar-brand" id="nombre_de_la_pagina"> Clases del Curso -  </span>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <h3 class="w-100 text-center my-3">Grabaciones</h3>
+                    <div class="row" id="div_contenido">
+
+                    </div>
+
+
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <p class="copyright text-center">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="https://softluttion.com">Softluttion</a>, made with love for a better web
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Chartist Plugin  -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
+
+        get_data();
+        theme_detail(getUrlParameter('cur'));
+    });
+    function get_data() {
+        $.post('logic/servicios.php?parAccion=get_data', function(data) {
+            var obj = JSON.parse(data);
+
+            if (obj.user_name == null || obj.user_name == "" || obj.user_name == undefined) {
+                //location.href = "../";
+                location.href = "../login/login_a.php";
+            } else {
+                $("#user_name").text(obj.user_name);
+                $("#career_name").text(obj.carrera);
+                $("#area_name").text(obj.area);
+            }
+        });
+    }
+    var dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+    function theme_detail(id){
+        $.post('logic/servicios.php?parAccion=theme_detail', {
+            id: id
+        }, function(data) {
+            var obj = JSON.parse(data);
+
+            $("#title_theme").text(obj.curso + " - Clases Anteriores");
+            $("#nombre_de_la_pagina").text(""+obj.curso);
+
+            var iframe = "";
+            var enlaces = "";
+            var total_videos = 0;
+        	total_videos = obj.videos.length;
+            $.each(obj.videos, function(index, val) {
+                var url1 = val.video.split("/");
+                var ultimo = url1[url1.length - 1].split("v=");
+                var material_adicional = "";
+                $.each(val.materiales, function(i, v) {
+                    if(v.material == null || v.material == "" || v.material == undefined || v.material == "undefined"){
+
+                    }else{
+                        material_adicional += `<small style="display: block; width: 100%;"><a target="_blank" href="/intranet/system/controllers/material_adicional/${v.material}">${v.material}</a></small><hr class="mb-1 mt-0">`;
+                    }
+                });
+                if(val.video.substring(1, 5) == "ifra"){
+	                iframe += `<div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Video ${parseInt(total_videos)} (${val.fecha}) <small>${val.tema}</small></h4>
+                            ${material_adicional}
+                        </div>
+                        <div class="card-body iframe_div">
+                            ${val.video}
+                        </div>
+                    </div>`;
+                }else{
+                	//console.log(val.video.substring(1, 5));
+                    if (val.video.includes("facebook")) {
+                        iframe += `<div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Video ${parseInt(total_videos)} (${val.fecha}) <small>${val.tema}</small></h4>
+                                ${material_adicional}
+                            </div>
+                            <div class="card-body iframe_div">
+                                <a href="${val.video}" target="_blank" class="btn btn-primary w-100">Ver Video en Facebook</a>
+                            </div>
+                        </div>`;
+                    }else{
+                        if (ultimo.length > 1) {
+                            iframe += `<div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">Video ${parseInt(total_videos)} (${val.fecha}) <small>${val.tema}</small></h4>
+                                    ${material_adicional}
+                                </div>
+                                <div class="card-body">
+                                    <iframe id = "video1" class="embed-responsive embed-responsive-16by9" src="https://www.youtube.com/embed/${ultimo[1]}" allowfullscreen style="height: 360px; border: 0;"></iframe>
+                                </div>
+                            </div>`;
+                        } else {
+                            iframe += `<div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Video ${parseInt(total_videos)} (${val.fecha}) <small>${val.tema}</small></h4>
+                                    ${material_adicional}
+                                </div>
+                                <div class="card-body">
+                                    <iframe id = "video1" class="embed-responsive embed-responsive-16by9" src="https://www.youtube.com/embed/${url1[url1.length - 1]}" allowfullscreen style="height: 360px; border: 0;"></iframe>
+                                </div>
+                            </div>`;
+                        }
+                    }
+	                
+                }
+            	total_videos--;
+            });
+            $.each(obj.recursos, function(i, v) {
+                enlaces += `
+                    <p>${parseInt(i + 1)}. <a href="${v.enlace}" target="_blank">${v.nombre}</a></p>
+                    <hr class="w-100">
+                `;
+            });
+            $("#div_contenido").append(`
+                <div class="col-md-8">${iframe}</div>
+                <div class="col-md-4">
+                    <h4 class="w-100 text-center">Recursos Adicionales</h4>
+                    ${enlaces}
+                </div>
+            `);
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?>
+<soapenv:Header>
+<wsse:Security>
+<wsse:UsernameToken>
+<wsse:Username>20455587116MODDATOS</wsse:Username>
+<wsse:Password>moddatos</wsse:Password>
+</wsse:UsernameToken>
+</wsse:Security>
+</soapenv:Header>

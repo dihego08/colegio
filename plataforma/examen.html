@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <!--<link rel="icon" type="image/png" href="assets/img/favicon.ico">-->
+    <link href="../img/logo.ico" rel="shortcut icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Examenes - Academia La Clave :: Plataforma Virtual</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/stylo.css" rel="stylesheet" />
+    <style>
+        .sim_cuerpo {
+            color: #333;
+            border: 2px solid #00FFFD;
+            border-radius: 5px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 10px 0px;
+            display: none;
+            background: #f9f9f9;
+            padding: 10px;
+        }
+        
+        .btn-warning:not(:disabled):not(.disabled):active,
+        .btn-warning:not(:disabled):not(.disabled).active,
+        .show>.btn-warning.dropdown-toggle {
+            color: #fff;
+            background-color: #0062cc;
+            border-color: #005cbf;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <h4 class="simple-text mt-0 mb-1" id="user_name">
+                        
+                    </h4>
+                    <span class="w-100 text-center" style="display: block;" id="career_name"></span>
+                    <small class="w-100 text-center" style="display: block; text-transform: uppercase;" id="area_name"></small>
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="index.html">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./user.html">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Mi Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./cursos.html">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Mis Cursos</p>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a class="nav-link" href="./asistencias.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Asistencias</p>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a class="nav-link" href="./entregas.html">
+                            <i class="nc-icon nc-delivery-fast"></i>
+                            <p>Mis Entregas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./biblioteca.html">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>Biblioteca</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./examen">
+                            <i class="nc-icon nc-ruler-pencil"></i>
+                            <p>Examen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./estadisticas">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Estadisticas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./logout.php">
+                            <i class="nc-icon nc-spaceship"></i>
+                            <p>Cerrar Sesion</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="logo"><img class="w-100" src="../img/logo.png" alt="" style="border-radius: 4px; box-shadow: 0px 2px 2px #313131;" /></div>
+                <!--<div class="logo"><img class="w-100" src="assets/img/g2804.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3775.png" alt="" /></div>
+                <div class="logo"><img class="w-100" src="assets/img/g3853.png" alt="" /></div>-->
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <span class="navbar-brand"> Inicio </span>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div id="cronometro" class="text-center" style="position: fixed; z-index: 4; background-color: red; color: white; padding: 1px 3px; font-weight: bold; border-radius: 4px;">
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12" style="background-color: #f0e3d5;">
+                            <div class="card mt-1">
+                                <div class="card-header para_ocultar">
+                                    <h4 class="card-title">Examenes para hoy</h4>
+                                    <p class="card-category">Los Examenes programados para hoy se muestran acontinuacion.
+                                    </p>
+                                    
+                                </div>
+                                <div class="card-body para_ocultar" id="sim_datos">
+
+                                </div>
+                                <div class="w-100" id="div_alerta"></div>
+                                <div class="row w-100 mt-4 mb-4 sim_cuerpo" id="div_preguntas" style="margin: 0 auto;">
+                                    <div class="col-md-12 row" id="examen_drive">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 w-100 text-center" id="boton" hidden>
+                                    <button class="btn btn-danger btn-lg" onclick="culminarSimulacro();">Finalizar</button>
+                                </div>
+                                <div class="sim_cuerpo" style="display:none; padding:10px;" id="nota">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <p class="copyright text-center">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="https://softluttion.com">Softluttion</a>, made with love for a better web
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!----------------------------------------------------------------------->
+    <div class="modal fade" id="formulario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 50%;">
+            <div class="modal-content" style="background-color: #f1f1f1; height: auto;">
+                <div class="modal-header" style="position: relative; padding-top: 0; padding-bottom: 0;">
+                    <h3 class="modal-title mb-4" id="curso_nombre" style="border-bottom: solid #f3e444; color: #313131;">Entregar Tarea</h3>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="color: #000;">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="form-row mb-3" style="width: 100%;" id="form_row_">
+                        <div class="col-md-12">
+                            <label style="color: #313131;">Archivo</label>
+                            <input type="file" name="file1" id="file1" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label style="color: #313131;">Observaciones - Comentarios</label>
+                            <textarea cols="30" rows="10" class="form-control" id="observacion" style="resize: none;"></textarea>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <progress id="progressBar" class="mt-2" value="0" max="100" style="width:100%;"></progress>
+                            <p id="status"></p>
+                            <p id="loaded_n_total"></p>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <button class="btn btn-success w-100" id="btn_accion">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------------------------------->
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Chartist Plugin  -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js" integrity="sha512-8vfyGnaOX2EeMypNMptU+MwwK206Jk1I/tMQV4NkhOz+W8glENoMhGyU6n/6VgQUhQcJH8NqQgHhMtZjJJBv3A==" crossorigin="anonymous"></script>
+<script>
+    function _(el) {
+        return document.getElementById(el);
+    }
+
+    function uploadFile() {
+        var file = _("file1").files[0];
+        var formdata = new FormData();
+        formdata.append("file1", file);
+        formdata.append("id_tema", $("#id_tema").val());
+        formdata.append("id_tema", $("#id_tema").val());
+        formdata.append("tarea", $("#tarea").val());
+        formdata.append("fecha_entrega", $("#fecha_entrega").val());
+        formdata.append("parAccion", "entregar_tarea");
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.addEventListener("load", completeHandler, false);
+        ajax.addEventListener("error", errorHandler, false);
+        ajax.addEventListener("abort", abortHandler, false);
+        ajax.open("POST", "../php/tarea.php");
+        ajax.send(formdata);
+    }
+
+    function progressHandler(event) {
+        _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+        var percent = (event.loaded / event.total) * 100;
+        _("progressBar").value = Math.round(percent);
+    }
+
+    function completeHandler(event) {
+        /*table = $(".datatable").DataTable();
+        table.ajax.reload();*/
+        var res = JSON.parse(event.target.response);
+        if (res.Result == "OK") {
+            bootbox.alert({
+                message: '<div class="alert alert-success" style="margin-top: 5%; margin-bottom: 0;">' +
+                    '<strong>Tarea Entregada Correctamente.</strong>' +
+                    '</div>'
+            });
+            lista_tareas_pendientes();
+            limpiar_formulario();
+        } else {
+            bootbox.alert({
+                message: '<div class="alert alert-danger" style="margin-top: 5%; margin-bottom: 0;">' +
+                    '<strong>Algo ha salido mal.</strong>' +
+                    '</div>'
+            });
+        }
+        _("progressBar").value = 0;
+    }
+
+    function errorHandler(event) {
+        _("status").innerHTML = "Upload Failed";
+    }
+
+    function abortHandler(event) {
+        _("status").innerHTML = "Upload Aborted";
+    }
+</script>
+<script type="text/javascript">
+    var alter_r = [];
+    var arrayLetras = new Array();
+    var id_examen_ = 0;
+    var sim = "";
+    var duracion_ = 0;
+    var n_p = 0;
+    $(document).ready(function() {
+        get_data();
+        localStorage.setItem('cur_url', window.location.href);
+
+        get_examen();
+
+        var flag_buscar = 0;
+        var flag_header = 0;
+        document.addEventListener('keyup', function (event) {
+            if(event.which == 120){
+                /*if(flag_buscar == 0){
+                    flag_buscar = 1;
+                    $("#busca_barras").removeAttr("hidden");
+                    $("#busca_item").attr("hidden", "hidden");
+                }else{
+                    flag_buscar = 0;
+                    $("#busca_item").removeAttr("hidden");
+                    $("#busca_barras").attr("hidden", "hidden");
+                }*/
+            }else if(event.which == 115){
+                console.log("OH YES");
+                if(flag_buscar == 0){
+                    flag_buscar = 1;
+                    $(".sidebar").hide();
+                    $(".main-panel").css('width', '100%');
+                }else{
+                    flag_buscar = 0;
+                    $(".sidebar").show();
+                    $(".main-panel").css('width', 'calc(100% - 260px)');
+                }
+            }
+        });
+    });
+
+    function get_data() {
+        $.post('logic/servicios.php?parAccion=get_data', function (data) {
+            var obj = JSON.parse(data);
+
+            if (obj.user_name == null || obj.user_name == "" || obj.user_name == undefined) {
+                //location.href = "../";
+                location.href = "../login/login_a.php";
+            } else {
+                $("#user_name").text(obj.user_name);
+                $("#career_name").text(obj.carrera);
+                $("#area_name").text(obj.area);
+            }
+        });
+    }
+
+    function get_examen() {
+        $.post('logic/servicios.php?parAccion=get_examen_2', function(data) {
+            var obj = JSON.parse(data);
+
+            if (obj.examen == null || obj.examen == "" || obj.examen == undefined) {
+                $("#sim_datos").append(`<div class="alert alert-danger">
+                        <strong>No hay un examen programado para hoy.</strong>
+                    </div>`);
+            } else if(obj.Result == "DONE"){
+                $("#sim_datos").append(`<div class="alert alert-danger">
+                    <strong>Ya has rendido este examen.</strong>
+                </div>`);
+            }else {
+
+                n_p = obj.n_preguntas;
+                id_examen_ = obj.id;
+                duracion_ = 70 / 60;
+
+                var aux = 0;
+                $.each(obj.archivo, function(index, val) {
+                    var alters = "";
+                    alters += `<div class="btn-group btn-group-toggle mt-2" data-toggle="buttons"> <span class="bold" style="min-width: 35px;">` + parseInt(index + 1).toString().padStart(2, "0") + ".- </span>";
+                    for (var j = 0; j < 5; j++) {
+                        alters += `<label class="btn btn-warning ml-1 cursor" style="border-radius: 4px;">
+                                    <input type="radio" name="options` + parseInt(index + 1) + `" id="option` + parseInt(index + 1) + get_letra(j) + `" value="` + get_letra(j) + `"> ` + get_letra(j) + `
+                                  </label>`;
+                    }
+                    alters += `</div>`;
+                    var display = "";
+                    if (aux == 0) {
+
+                    } else {
+                        display = "display: none;";
+                    }
+
+                    var imagenes = "";
+                    if(val.enunciado == "" || val.enunciado == null){
+                        imagenes = `<div class="col-md-8 mx-auto">
+                            <img style="max-width: 100%; box-shadow: 0px 2px 2px #313131;" class="w-100" src="../intranet/system/controllers/ranking_` + obj.id + `/` + val.pregunta + `" alt="" />
+                        </div>`;
+                    }else{
+                        if(val.pregunta == "" || val.pregunta == null){
+                            imagenes = `<div class="col-md-8 mx-auto">
+                                <img style="max-width: 100%; box-shadow: 0px 2px 2px #313131;" class="w-100" src="../intranet/system/controllers/ranking_` + obj.id + `/` + val.enunciado + `" alt="" />
+                            </div>`;
+                        }else{
+                            imagenes = `<div class="col-md-6">
+                                <img style="max-width: 100%; box-shadow: 0px 2px 2px #313131;" class="w-100" src="../intranet/system/controllers/ranking_` + obj.id + `/` + val.enunciado + `" alt="" />
+                            </div>
+                            <div class="col-md-6">
+                                <img style="max-width: 100%; box-shadow: 0px 2px 2px #313131;" class="w-100" src="../intranet/system/controllers/ranking_` + obj.id + `/` + val.pregunta + `" alt="" />
+                            </div>`;
+                        }
+                        
+                    }
+
+                    $("#examen_drive").append(`
+                            <div style="` + display + `" class="row w-100" id="pregunta_` + parseInt(index + 1) + `">
+                                <div class="col-md-12 mt-4 form-row">
+                                    ${imagenes}
+                                </div>
+                                <div class="col-md-12 mt-4 text-center">
+                                    ` + alters + `
+                                </div>
+                                <div class="col-md-12 text-right mt-4">
+                                    <button class="btn btn-info" onclick="siguiente_pregunta(` + parseInt(index + 1) + `);">Siguiente</button>
+                                </div>
+                            </div>
+                        `);
+                    aux++;
+                    /*if (aux == 50) {
+                        $("#boton").removeAttr("hidden");
+                    }*/
+                });
+
+                $("#sim_datos").append(`<i class="fa fa-user-circle"></i> <b> Datos del Alumno:</b> ` + obj.nombres + ` <br>
+                        <i class="fa fa-university"></i> <b> Examen de Ranking:</b> ` + obj.examen + ` <br>
+                        <div class="sim_recomendaciones">
+                            <span>Controle su tiempo. Recuerde que el tiempo de duración del examen no supera los ` + parseInt(duracion_) + ` min.</span><br>
+                            <span>Revise que haya marcado todas las preguntas antes de presionar "Finalizar".</span>
+                        </div>
+                        <div id="sim_btn" class="text-center sim_comenzar">
+                            <button id="btn_comenzar" class="sim_btn btn btn-info" name="button" value="Simulacro_Sociales" onclick="comenzarSimulacro()">COMENZAR</button>
+                        </div>`);
+                var html = "";
+                $.each(obj.QUES, function(index, val) {
+                    html += `<div class="preguntas">
+                            <br><span class="pregunta"><b>P` + parseInt(index + 1) + `.- ` + val.pregunta + `</b></span><br><br> &nbsp;`;
+                    $.each(val.alternativas, function(i, v) {
+                        if (v.correcta == 1) {
+                            alter_r["p" + parseInt(index + 1)] = v.id;
+                        } else {
+
+                        }
+                        html += `<input type="radio" name="p` + parseInt(index + 1) + `" id="p` + parseInt(index + 1) + `` + get_letra(i) + `" value="` + v.id + `"> 
+                                <label for="p` + parseInt(index + 1) + `` + get_letra(i) + `">` + get_letra(i) + `) &nbsp;` + v.alternativa + `</label><br> &nbsp;`;
+                    });
+                    html += `</div>`;
+                });
+                $("#div_preguntas").append(html);
+            }
+
+        });
+    }
+
+    function siguiente_pregunta(n_pregunta) {
+        console.log(n_pregunta);
+        arrayLetras[n_pregunta] = $("input[name='options" + n_pregunta + "']:checked").val();
+        console.log(arrayLetras);
+
+        $("#pregunta_" + n_pregunta).remove();
+        $("#pregunta_" + parseInt(n_pregunta + 1)).css('display', 'flex');
+
+
+        tiempoCambiante = 0;
+        d = duracion_ * 60;
+        tiempoTotalSegundos = d;
+        TranscurridoSegundos = 0;
+        TranscurridoMinutos = 0;
+        TranscurridoHoras = 0;
+        tiempoCambiante = 0;
+
+        if (n_pregunta == 50) {
+            $("#boton").removeAttr("hidden");
+        }
+
+        //contador_general++;
+    }
+    //COMENZAR SIMULACRO
+    function comenzarSimulacro() {
+        $(".sidebar").hide();
+        $(".para_ocultar").hide();
+        $(".navbar-expand-lg").hide();
+        $(".main-panel").css('width', '100%');
+
+        
+        //$("#boton").removeAttr("hidden");
+        //Ocultar boton de comenzar
+        document.getElementById("sim_btn").style.display = "none";
+        document.getElementById("div_preguntas").style.display = "flex";
+        //correr cronómetro
+        cronometro();
+    }
+    //HORA
+    //var tiempoTotalSegundos = 9000;duracion_ * 60
+
+
+    var TranscurridoSegundos = 0;
+    var TranscurridoMinutos = 0;
+    var TranscurridoHoras = 0;
+    var tiempoCambiante = 0;
+    var t;
+    var contador_general = 1;
+
+
+    //===
+    // VARIABLES
+    //===
+    //const DATE_TARGET = new Date('04/13/2021 0:01 AM');
+    // DOM for render
+    /*const SPAN_DAYS = document.querySelector('span#days');
+    const SPAN_HOURS = document.querySelector('span#hours');*/
+    /*const SPAN_MINUTES = document.querySelector('span#minutes');
+    const SPAN_SECONDS = document.querySelector('span#seconds');
+    // Milliseconds for the calculations
+    const MILLISECONDS_OF_A_SECOND = 1000;
+    const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+    const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+    const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24*/
+
+    var total_minutos = 69;
+    var los_segundos = 60;
+    function cronometro() {
+        /*var d = duracion_ * 60;
+        var tiempoTotalSegundos = d;
+
+        tiempoCambiante = tiempoCambiante + 1;
+
+        if (tiempoCambiante > d) {
+            if (contador_general == 50) {
+                //Parar cronometro y tomar acción.
+                alert("Tiempo cumplido");
+                clearTimeout(t);
+                culminarSimulacro();
+            } else {
+                siguiente_pregunta(contador_general);
+                cronometro();
+            }
+            contador_general++;
+        } else {
+            TranscurridoSegundos = Number(TranscurridoSegundos) + 1;
+            if (TranscurridoSegundos == 60) {
+                TranscurridoMinutos = Number(TranscurridoMinutos) + 1;
+                TranscurridoSegundos = 0;
+                if (TranscurridoMinutos == 60) {
+                    TranscurridoHoras = Number(TranscurridoHoras) + 1;
+                    TranscurridoMinutos = 0;
+                }
+            }
+            t = setTimeout("cronometro()", 1000);
+        }
+        if (TranscurridoSegundos < 10) {
+            TranscurridoSegundos = "0" + Number(TranscurridoSegundos);
+        }
+        if (TranscurridoMinutos < 10) {
+            TranscurridoMinutos = "0" + Number(TranscurridoMinutos);
+        }
+        if (TranscurridoHoras < 10) {
+            TranscurridoHoras = "0" + Number(TranscurridoHoras);
+        }
+        document.getElementById('cronometro').innerHTML = TranscurridoHoras + ":" + TranscurridoMinutos + ":" + TranscurridoSegundos;*/
+
+        
+
+        los_segundos -= 1;
+		$("#cronometro").text(total_minutos+":"+los_segundos);
+        if (total_minutos == 0 && los_segundos == 0) {
+        	alert("Tiempo cumplido");
+            clearTimeout(t);
+            culminarSimulacro();
+
+            
+        }else{
+
+
+	        if(los_segundos == 0){
+	        	los_segundos = 60
+	        	total_minutos--;
+	        }
+
+	        if (total_minutos <= 4) {
+	        	$("#div_alerta").empty();
+	        	$("#div_alerta").append('<div class="alert alert-danger"><strong>Quedan '+parseInt(total_minutos + 1)+' minutos para terminar el examen.</strong></div>')
+	        }
+	        t = setTimeout("cronometro()", 1000);
+        }
+
+        
+    }
+
+    function get_letra(i) {
+        var letras = ["A", "B", "C", "D", "E", "F", "G", "H"];
+        return letras[i];
+    }
+    //CULMINAR SIMULACRO
+    function culminarSimulacro() {
+        clearTimeout(t);
+        document.getElementById("div_preguntas").style.display = "none";
+
+        $("#boton").attr("hidden", true);
+
+        $.post('logic/servicios.php?parAccion=resolver', {
+            id_examen: id_examen_,
+            letras: arrayLetras
+        }, function(data) {
+            var obj = JSON.parse(data);
+            document.getElementById("nota").style.display = "block";
+            document.getElementById("nota").innerHTML += "<b>Puntaje Obtenido:  </b>" + obj.nota + "<br> <b>Total Preguntas: </b>" +
+                n_p + " <br> <b>Correctas: </b>" + obj.correctas + " <br> <b>Incorrectas: </b>" + obj.incorrectas + " <br> <b>No respondidas: </b>" + obj.noRespondidas +
+                " <br>";
+        });
+    }
+</script>
+
+</html>

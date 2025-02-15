@@ -1,0 +1,86 @@
+table.dataTable {
+    font-size: 0.85rem;
+}
+
+.datatable .table td,
+.datatable .table th {
+    padding: 0px;
+}
+
+.table td,
+.table th {
+    padding: .25rem 4px;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+    top: 2px;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
+table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+    background-color: #2780CD;
+}
+
+.dt-buttons button {
+    background-color: #082F60;
+    border-color: #051D3B;
+}
+
+.dt-buttons button:hover {
+    background-color: #051D3B;
+    border-color: #051D3B;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #082F60;
+    border-color: #051D3B;
+}
+
+.page-link:hover {
+    color: #082F60;
+}
+
+.page-link {
+    color: #082F60;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #082F60;
+}
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+    color: #fff;
+    background-color: #051D3B;
+    border-color: #082F60;
+}
+
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:before {
+    top: 1px;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    top: 1px;
+}
+
+.botones_datables button,
+.btn_personalizado {
+    background-color: #082F60;
+    margin-bottom: 5px;
+    border-color: #082F60;
+    color: #fff;
+}

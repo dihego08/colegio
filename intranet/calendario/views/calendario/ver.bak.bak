@@ -1,0 +1,11 @@
+<?php while ($db_file = $db_result -> fetch(PDO::FETCH_ASSOC)): ?>
+
+<p><strong>Fecha de inicio:</strong> <?php echo $db_file["inicio_normal"]; ?><br>
+  <strong>Fecha de finalización:</strong> <?php echo $db_file["final_normal"]; ?></p>
+
+<h3>Detalles:</h3>
+<p><?php echo nl2br($db_file["body"]); ?></p>
+
+<p><a href="index.php?action=eliminar&id=<?php echo $db_file["id"]; ?>" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></p>
+
+<?php endwhile; ?>

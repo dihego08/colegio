@@ -1,0 +1,166 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    /*$(".fechas_ui").datepicker({ dateFormat: 'yy-mm-dd' });
+     totales('livitaca', 'Livitaca');
+     totales('arequipa', 'Arequipa');
+     totales('chamaca', 'Chamaca');
+     $(".fechas_ui").change(function() {
+         table_livitaca.ajax.reload();
+         table_arequipa.ajax.reload();
+         table_chamaca.ajax.reload();
+         totales('livitaca', 'Livitaca');
+         totales('arequipa', 'Arequipa');
+         totales('chamaca', 'Chamaca');
+         ajax_data();
+     })*/
+    var table_livitaca = $('#table_livitaca').DataTable({
+        "ajax": {
+            "url": '../ReportesEfrain/reporte/',
+            "dataSrc": "",
+            "data": function(d) {
+                d.fecha_inicio = $('input[name=fecha_inicio]').val();
+                d.fecha_final = $('input[name=fecha_final').val();
+            },
+        },
+        "columns": [{
+            "data": "id_venta"
+        }, {
+            "data": "fecha_hora"
+        }, {
+            "data": "sed"
+        }, {
+            "data": "total_pagado"
+        }, {
+            "data": "saldo_capital"
+        }],
+        dom: '<"row"<"col-12 col-sm-12 col-md-6"l><"col-12 col-sm-12 col-md-6">>rt<"top"B><"col-12">p',
+    });
+    var table_arequipa = $('#table_arequipa').DataTable({
+        "ajax": {
+            "url": '../ReportesEfrain/reporte/Arequipa',
+            "dataSrc": "",
+            "data": function(d) {
+                d.fecha_inicio = $('input[name=fecha_inicio]').val();
+                d.fecha_final = $('input[name=fecha_final').val();
+            },
+        },
+        "columns": [{
+            "data": "id_venta"
+        }, {
+            "data": "fecha_hora"
+        }, {
+            "data": "sed"
+        }, {
+            "data": "total_pagado"
+        }, {
+            "data": "saldo_capital"
+        }],
+        dom: '<"row"<"col-12 col-sm-12 col-md-6"l><"col-12 col-sm-12 col-md-6">>rt<"top"B><"col-12">p',
+    });
+    var table_chamaca = $('#table_chamaca').DataTable({
+        "ajax": {
+            "url": '../ReportesEfrain/reporte/Chamaca',
+            "dataSrc": "",
+            "data": function(d) {
+                d.fecha_inicio = $('input[name=fecha_inicio]').val();
+                d.fecha_final = $('input[name=fecha_final').val();
+            },
+        },
+        "columns": [{
+            "data": "id_venta"
+        }, {
+            "data": "fecha_hora"
+        }, {
+            "data": "sed"
+        }, {
+            "data": "total_pagado"
+        }, {
+            "data": "saldo_capital"
+        }],
+        dom: '<"row"<"col-12 col-sm-12 col-md-6"l><"col-12 col-sm-12 col-md-6">>rt<"top"B><"col-12">p',
+    });
+});
+
+function totales(variable, busqueda) {
+    var fecha_inicio = $('input[name=fecha_inicio]').val();
+    var fecha_final = $('input[name=fecha_final]').val();
+    $.ajax({
+        url: '../ReportesEfrain/total/' + busqueda,
+        type: "post",
+        dataType: "json",
+        data: {
+            'fecha_inicio': fecha_inicio,
+            'fecha_final': fecha_final,
+        },
+        success: function(data) {
+            $('.total_' + variable + '_pagado').html(data.total_pagado);
+            $('input[name=total_' + variable + '_pagado]').val(data.total_pagado_s.toFixed(2));
+            $('.saldo_' + variable + '_capital').html(data.saldo_capital);
+            $('input[name=saldo_' + variable + '_capital]').val(data.saldo_capital_s.toFixed(2));
+        }
+    });
+}
+
+function ajax_data() {
+    var fecha_inicio = $('input[name=fecha_inicio]').val();
+    var fecha_final = $('input[name=fecha_final]').val();
+    $.ajax({
+        type: 'GET',
+        url: '../ReportesEfrain/totales_fechas/',
+        dataType: "json",
+        data: {
+            'fecha_inicio': fecha_inicio,
+            'fecha_final': fecha_final,
+        },
+        cache: false,
+        timeout: 20000,
+        beforeSend: function(data) {},
+        success: function(data) {
+            charts(data);
+            console.log(data);
+        },
+        error: function(data) {
+            alert("Error In Connecting");
+        }
+    });
+}
+
+function charts(data) {
+    var jsonData = data;
+    google.load("visualization", "1", { packages: ["corechart"], callback: drawVisualization });
+
+    function drawVisualization() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Fecha');
+        data.addColumn('number', 'Total Pagado');
+        data.addColumn('number', 'Saldo Capital');
+        //data.addColumn('number', 'Utilidad');
+        $.each(jsonData, function(i, jsonData) {
+            var fecha = jsonData.fecha;
+            var total_pagado = jsonData.total_pagado;
+            var saldo_capital = jsonData.saldo_capital;
+            data.addRows([
+                [fecha, total_pagado, saldo_capital]
+            ]);
+        });
+        var options = {
+            title: "Fechas",
+            animation: {
+                duration: 3000,
+                easing: 'out',
+                startup: true
+            },
+            colorAxis: { colors: ['#54C492', '#cc0000'] },
+            datalessRegionColor: '#00FF00',
+            defaultColor: '#dedede',
+            series: {
+                0: { color: '#006D00' },
+                1: { color: '#FF0800' },
+            }
+        };
+        var chart;
+        chart = new google.visualization.LineChart(document.getElementById('container'));
+        chart.draw(data, options);
+    }
+}
+</script>

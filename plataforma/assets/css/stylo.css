@@ -1,0 +1,11 @@
+.bold{
+	font-weight: bold;
+}
+.icon-horario{
+	color: blue;
+	vertical-align: middle;
+	font-weight: bold;
+}
+.sidebar-wrapper{
+	background-color: #de1a1a !important;
+}
