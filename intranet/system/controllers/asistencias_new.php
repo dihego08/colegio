@@ -88,18 +88,9 @@ class asistencias_new extends f
 		if (!empty($alumno)) {
 
 			$alumno = json_decode($alumno);
-			$aula = json_decode($this->modelo3->select_one("aulas", array('id' => $alumno->id_aula)));
-			if(empty($aula)){
-				$aula = json_decode($this->modelo3->select_one("aulas", array('id' => $alumno->id_aula_designada)));
-			}
+			$grado = json_decode($this->modelo3->select_one("grados", array('id' => $alumno->id_grado)));
+			
 			$e_cuenta = $this->estado_cuenta($alumno->id);
-			
-			//$area = json_decode($this->modelo3->select_one("areas", array('id' => $alumno->id_area)));
-			
-			$sql = "SELECT A.area FROM areas A JOIN carreras C ON C.id_area = A.id AND C.id = ".$alumno->id_carrera;
-		    //echo $this->modelo3->run_query($sql, false);
-		    $area = json_decode($this->modelo3->run_query($sql, false));
-		    //print_r($area);
 			
 			// print_r($e_cuenta);
 			$anio = date("Y");
@@ -138,8 +129,7 @@ class asistencias_new extends f
 				'Code' => '100',
 				'Data' => $alumno,
 				'Ecuenta' => array("ecuenta" => $ecuenta),
-				'aula' => $aula->aula,
-				'area' => $area[0]->area
+				'grado' => $grado->grado,
 			);
 			echo json_encode($result);
 		} else {

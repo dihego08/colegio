@@ -80,8 +80,7 @@ class html_asistencias_new extends f{
                                 <h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>
                                 <h5><strong>Estado de cuenta:</strong> ${obj.Ecuenta.ecuenta}</h5>
 
-                                <h5><strong>Aula:</strong> ${obj.aula}</h5>
-                                <h5><strong>Área:</strong> ${obj.area}</h5>
+                                <h5><strong>Grado:</strong> ${obj.grado}</h5>
                             `);
                             $("#codigo_dni").val("");
                         }else{
@@ -105,8 +104,7 @@ class html_asistencias_new extends f{
                                         <h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>
                                         <h5><strong>Estado de cuenta:</strong> ${obj.Ecuenta.ecuenta}</h5>
 
-                                        <h5><strong>Aula:</strong> ${obj.aula}</h5>
-                                        <h5><strong>Área:</strong> ${obj.area}</h5>
+                                        <h5><strong>Grado:</strong> ${obj.grado}</h5>
                                     `);
                                 }
                             }              
