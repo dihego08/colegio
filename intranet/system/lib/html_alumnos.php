@@ -42,6 +42,7 @@ class html_alumnos extends f
                         <a style="float: right; margin-bottom: 10px;" class="btn btn-sm btn-outline-info" href="system/lib/exportar_excel_alumnos.php">
                             <span >Exportar EXCEL</span>
                         </a>
+                        <a href="system/lib/generar-carnet.php?id=0" id="btn-exportar-carnet" style="float: right; margin-bottom: 10px;" class="btn btn-maroon btn-sm"><i class="fa fa-id-badge"></i> Imprimir Carnet</a>
                         <h5 class="">
                             <i class="fa fa-bars" aria-hidden="true"></i> Lista de Alumnos
                         </h5>
@@ -58,6 +59,7 @@ class html_alumnos extends f
                                             <tr>
                                                 <th>Id</th>
                                                 <th></th>
+                                                <th>Foto</th>
                                                 <th>N° Doc.</th>
                                                 <th>Nombres</th>
                                                 <th>Apellidos</th>
@@ -117,6 +119,17 @@ class html_alumnos extends f
                                     <div class="col-6 mb-2">
                                         <label for="">Contraseña (*)</label>
                                         <input type="password" class="form-control" id="ins_pass">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-row">
+                                    <div class="col-md-6 text-center">    
+                                        <label class="w-100">Foto</label>
+                                        <label for="foto" style="font-weight: bold;">Seleccionar imagen
+                                            <input id="foto" class="form-control" name="foto" type="file" style="display: none;"/>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <img class="mt-2" src="" id="profile-img-tag" width="200px" style="margin-left: auto;margin-right: auto;" />
                                     </div>
                                 </div>
 
@@ -349,6 +362,10 @@ class html_alumnos extends f
                         },
                         "columns": [{
                             "data": "id",
+                            "className": "dt-selecciona",
+                            "render": function (data, type, full, meta){
+                                return `<input type="checkbox" class="cb-dt-selecciona" name="id-alumno" value="${data}">`;
+                            },
                         }, {
                             "data": "estado",
                             "render": function(data){
@@ -358,6 +375,15 @@ class html_alumnos extends f
                                     return "<button id=\"btn_editar\" data-toggle=\"modal\" data-target=\"#formulario\" style=\"display: block;\" class=\"w-100 btn btn-outline-warning btn-sm\" ><i class=\"fa fa-edit\"></i></button><button id=\"btn_eliminar\"  style=\"display: block;\" class=\"w-100 mt-1 btn btn-outline-danger btn-sm mb-1\"><i class=\"fa fa-trash\"></i></button>"
                                 }
                             },
+                        },  {
+                            "data": "foto",
+                            "render": function(data){
+                                if(data == null || data == "null" || data == ""){
+                                    return `Sin Foto`;
+                                }else{
+                                    return `<a class="thumbnail" href="system/controllers/photo/${data}" target="_blank"><img src="system/controllers/photo/${data}"></a>`;
+                                }
+                            }
                         },  {
                             "data": "dni"
                         }, {
@@ -551,7 +577,9 @@ class html_alumnos extends f
                     if($("#id_grado").val() == -1 || $("#id_grado").val() == "-1"){
                         bootbox.alert("Se debe de seleccionar un grado.");
                     }else{
+                        var file = _("foto").files[0];
 
+                        formdata.append("foto", file);
                         formdata.append("nombres", $("#ins_nombres").val());
                         formdata.append("apellidos", $("#ins_apellidos").val());
                         formdata.append("telefono", $("#ins_celular").val());
@@ -580,6 +608,9 @@ class html_alumnos extends f
                     }else if($("#ins_ciclo").val() == -1 || $("#ins_ciclo").val() == "-1"){
                         bootbox.alert("Se debe de seleccionar un ciclo academico");
                     }else {
+                        var file = _("foto").files[0];
+
+                        formdata.append("foto", file);
                         formdata.append("nombres", $("#ins_nombres").val());
                         formdata.append("apellidos", $("#ins_apellidos").val());
                         formdata.append("telefono", $("#ins_celular").val());

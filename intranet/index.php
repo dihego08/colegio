@@ -9,5 +9,4 @@ class index {
 }
 $page = new index();
 $page->ini();
-
 	

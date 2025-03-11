@@ -41,20 +41,15 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
     if ($auxiliar == 0) {
         $carnets .= '<tr>';
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0;">
-        <div style="position:relative; border: solid 1px; width: 80mm; height: 48mm; background-image:url(\'https://laclave.diegoaranibar.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
             
-            
-            
-            <table style="width: 100%; margin-top: 15%;">
+            <table style="width: 100%; margin-top: 40%;">
                 <tr>
-                    <td style="width: 30%;">
-                        <img src="https://laclave.diegoaranibar.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="width: 100%; z-index: 0;">
-                    </td>
                     <td>
                         <table border="0" style="width: 100%;" >
                             <tr>
                                 <td style="width: 25%; padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
                                 </td>
                                 <td style="width: 75%; padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['nombres'] . '</h5>
@@ -62,7 +57,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
                                 </td>
                                 <td style=" padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['apellidos'] . '</h5>
@@ -70,13 +65,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Horario:</h5>
-                                </td>
-                                <td style=" padding: 5px;"><h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $hora_inicio . '<br>' . $hora_fin . '</h5></td>
-                            </tr>
-                            <tr>
-                                <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Código:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Código:</h5>
                                 </td>
                                 <td style="text-align: center; font-size: 0.70rem;padding: 5px;">
                                     <div style="width: 100%; text-align: center;">
@@ -85,14 +74,29 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                     <span style="display: block;">' . $row['dni'] . '</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; text-align: right; display: block; width: 100%;">
-                                        ' . date("Y") . '
-                                    </h5>
-                                </td>
-                            </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" style="width: 100%;" >
+                            <tr>
+                                <td style="width: 20%;">
+                                </td>
+                                <td style="width: 60%;">
+                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                </td>
+                                <td style="width: 20%;">
+                                </td>
+                            <tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; display: block; width: 100%; text-align: center;">
+                            ' . date("Y") . '
+                        </h5>
                     </td>
                 </tr>
             </table>
@@ -105,19 +109,16 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         $auxiliar = 0;
         $carnets .= '<tr>';
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0; min-height: 400px;">
-            <div style="position:relative; border: solid 1px; width: 80mm; height: 48mm; background-image:url(\'https://laclave.diegoaranibar.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+            <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
                 
                 
                 <table style="width: 100%; margin-top: 15%;">
                 <tr>
-                    <td style="width: 30%;">
-                        <img src="https://laclave.diegoaranibar.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="width: 100%; z-index: 0;">
-                    </td>
                     <td>
                         <table border="0" style="width: 100%;">
                             <tr>
                                 <td style="width: 25%; padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
                                 </td>
                                 <td style="width: 75%; padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['nombres'] . '</h5>
@@ -125,7 +126,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
                                 </td>
                                 <td style=" padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['apellidos'] . '</h5>
@@ -133,13 +134,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Horario:</h5>
-                                </td>
-                                <td style=" padding: 5px;"><h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $hora_inicio . '<br>' . $hora_fin . '</h5></td>
-                            </tr>
-                            <tr>
-                                <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Código:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Código:</h5>
                                 </td>
                                 <td style="text-align: center; font-size: 0.70rem; padding: 5px;">
                                     <div style="width: 100%; text-align: center;">
@@ -148,14 +143,29 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                     <span style="display: block;">' . $row['dni'] . '</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; text-align: right; display: block; width: 100%;">
-                                        ' . date("Y") . '
-                                    </h5>
-                                </td>
-                            </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" style="width: 100%;" >
+                            <tr>
+                                <td style="width: 20%;">
+                                </td>
+                                <td style="width: 60%;">
+                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                </td>
+                                <td style="width: 20%;">
+                                </td>
+                            <tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; display: block; width: 100%; text-align: center;">
+                            ' . date("Y") . '
+                        </h5>
                     </td>
                 </tr>
             </table>
@@ -163,20 +173,17 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         </td>';
     } else {
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0; min-height: 400px;">
-        <div style="position:relative; border: solid 1px; width: 80mm; height: 48mm; background-image:url(\'https://laclave.diegoaranibar.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
             
             
             
             <table style="width: 100%; margin-top: 15%;">
                 <tr>
-                    <td style="width: 30%;">
-                        <img src="https://laclave.diegoaranibar.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="width: 100%; z-index: 0;">
-                    </td>
                     <td>
                         <table border="0" style="width: 100%;">
                             <tr>
                                 <td style="width: 25%; padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Nombres:</h5>
                                 </td>
                                 <td style="width: 75%; padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['nombres'] . '</h5>
@@ -184,7 +191,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Apellidos:</h5>
                                 </td>
                                 <td style=" padding: 5px;">
                                     <h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $row['apellidos'] . '</h5>
@@ -192,13 +199,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                             </tr>
                             <tr>
                                 <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Horario:</h5>
-                                </td>
-                                <td style=" padding: 5px;"><h5 style="font-size: 0.6rem; margin: 0px 0px 0px 0px;">' . $hora_inicio . '<br>' . $hora_fin . '</h5></td>
-                            </tr>
-                            <tr>
-                                <td style=" padding: 5px;">
-                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 0px; color: ' . $settings['color_texto'] . ';">Código:</h5>
+                                    <h5 style="font-size: 0.70rem; margin: 0px 0px 0px 20px; color: ' . $settings['color_texto'] . ';">Código:</h5>
                                 </td>
                                 <td style="text-align: center; font-size: 0.70rem; padding: 5px;">
                                     <div style="width: 100%; text-align: center;">
@@ -207,14 +208,29 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                     <span style="display: block;">' . $row['dni'] . '</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; text-align: right; display: block; width: 100%;">
-                                        ' . date("Y") . '
-                                    </h5>
-                                </td>
-                            </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" style="width: 100%;" >
+                            <tr>
+                                <td style="width: 20%;">
+                                </td>
+                                <td style="width: 60%;">
+                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                </td>
+                                <td style="width: 20%;">
+                                </td>
+                            <tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <h5 style="font-size: 1.2rem; font-weight: 700; margin: 0 !important; color: ' . $settings['color_texto'] . '; display: block; width: 100%; text-align: center;">
+                            ' . date("Y") . '
+                        </h5>
                     </td>
                 </tr>
             </table>
@@ -280,7 +296,7 @@ $html = '<!DOCTYPE html>
     </body>    
 </html>';
 //echo $html;
-
+//return;
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 

@@ -1,3 +1,3 @@
 <?php
-define('URL', '/cursos_online/');
+define('URL', '/intranet/');
 define('_MOSTRAR_LOGO_', 'SI');

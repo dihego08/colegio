@@ -48,6 +48,7 @@ class html_pagos_2 extends f
                                                 <th>M. Pagado</th>
                                                 <th>Concepto</th>
                                                 <th>Fecha</th>
+                                                <th>Adeuda</th>
                                                 <th>Metodo Pago</th>
                                                 <th></th>
                                             </tr>
@@ -79,11 +80,15 @@ class html_pagos_2 extends f
                                     </select>
                                 </div>
                                 <div class="col-12 mb-2 form-row">
-                                    <div class="col-6 mb-2">
+                                    <div class="col-4 mb-2">
                                         <label for="">Monto</label>
                                         <input type="text" class="form-control" id="monto">
                                     </div>
-                                    <div class="col-6 mb-2">
+                                    <div class="col-4 mb-2">
+                                        <label for="">Adeuda</label>
+                                        <input type="text" class="form-control" id="adeuda">
+                                    </div>
+                                    <div class="col-4 mb-2">
                                         <label for="">Fecha</label>
                                         <input type="text" class="form-control datepicker" id="fecha">
                                     </div>
@@ -131,6 +136,64 @@ class html_pagos_2 extends f
                 </div>
             </div>
 
+            <div class="modal fade" id="formulario_pago" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Cancelar Deuda</h3>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" style="width: 100%;">
+                                <div class="col-12 mb-2 form-row">
+                                    <div class="col-6 mb-2">
+                                        <label for="">Monto</label>
+                                        <input type="text" class="form-control" id="monto_2">
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <label for="">Fecha</label>
+                                        <input type="text" class="form-control datepicker" id="fecha_2">
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-2 form-row">
+                                    <div class="col-6">
+                                        <label >Método de Pago</label>
+                                        <select class="form-control" id="id_metodo_pago_2"></select>
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="d-block">Adjuntar Comprobante</label>
+                                        <label for="foto_2" style="font-weight: bold;">
+                                            <i class="fa fa-camera" style="font-size: 2rem; cursor: pointer;"></i>
+                                            <input id="foto_2" class="form-control" name="foto" type="file" style="display: none;"/>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-3 text-center">
+                                        <img src="" id="profile-img-tag_2" width="200px" style="margin-left: auto;margin-right: auto;" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <progress id="progressBar_2" class="mt-2" value="0" max="100" style="width:100%;"></progress>
+                                    <p id="status_2"></p>
+                                    <p id="loaded_n_total_2"></p>
+                                </div>
+                                <div class="form-row text-center">
+                                    <button type="submit" class="btn btn-success" id="btn_finalizar_2">Guardar</button>
+                                    <span class="btn btn-danger" type="button" data-dismiss="modal" id="cerrar_formulario_docente_2" style="margin-left: 10px">
+                                        Cancelar
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
@@ -145,13 +208,25 @@ class html_pagos_2 extends f
                     $.post("' . $this->baseurl . INDEX . 'pagos_2/get_metodos_pagos", function(response){
                         var obj = JSON.parse(response);
                         $("#id_metodo_pago").append(`<option value="0">--SELECCIONAR--</option>`);
+                        //id_metodo_pago_2
+                        $("#id_metodo_pago_2").append(`<option value="0">--SELECCIONAR--</option>`);
                         $.each(obj, function(index, val){
                             $("#id_metodo_pago").append(`<option value="${val.id}">${val.metodo_pago}</option>`);
+                            $("#id_metodo_pago_2").append(`<option value="${val.id}">${val.metodo_pago}</option>`);
                         });
                     });
                 }
                 $(document).ready(function() {
                     get_metodos_pagos();
+                    function readURL_2(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("#profile-img-tag_2").attr("src", e.target.result);
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
                     function readURL(input) {
                         if (input.files && input.files[0]) {
                             var reader = new FileReader();
@@ -163,6 +238,9 @@ class html_pagos_2 extends f
                     }
                     $("#foto").change(function(){
                         readURL(this);
+                    });
+                    $("#foto_2").change(function(){
+                        readURL_2(this);
                     });
                     $("#id_alumno").select2({
                         dropdownParent: $("#formulario")
@@ -182,7 +260,7 @@ class html_pagos_2 extends f
                             "dataSrc": ""
                         },
                         order: [[ 0, "desc" ]],
-        dom: "Bfrtip",
+                        dom: "Bfrtip",
                         "columns": [{
                             "data": "fecha"
                         },{
@@ -203,6 +281,16 @@ class html_pagos_2 extends f
                                 return `<span class="badge badge-danger" style="font-size: 100%;">${data}</span>`
                             }
                         }, {
+                            "data": "adeuda",
+                            "render": function(data){
+                                if(data > 0){
+                                    return `<span class="badge badge-danger"  style="font-size: 13px;">S/ ${data}</span>`+
+                                    `<span id="btn_pagar" class="btn btn-outline-info btn-sm mt-1 d-block" title="Actualizar Pago"><i class="fa fa-money"></i></span>`
+                                }else{
+                                    return ``;
+                                }
+                            }
+                        }, {
                             "data": "metodo_pago"
                         }, {
                             data: "id",
@@ -218,9 +306,9 @@ class html_pagos_2 extends f
                         "language": {
                             "url": "' . $this->baseurl . 'includes/datatables/Spanish.json"
                         },
-        buttons: [
-            "excel"
-        ],
+                        buttons: [
+                            "excel"
+                        ],
                         "lengthMenu": [
                             [10, 15, 20, -1],
                             [10, 15, 20, "All"]
@@ -266,8 +354,29 @@ class html_pagos_2 extends f
                             editar(data["id"]);
                         }
                     });
+                    $(".datatable tbody").on("click", "#btn_pagar", function() {
+                        var data = table.row($(this).parents("tr")).data();
+                        if (data == undefined) {
+                            var selected_row = $(this).parents("tr");
+                            if (selected_row.hasClass("child")) {
+                                selected_row = selected_row.prev();
+                            }
+                            var rowData = $(".datatable").DataTable().row(selected_row).data();
+                            abrir_formulario_pago(rowData["id"], rowData["adeuda"]);
+                        } else {
+                            abrir_formulario_pago(data["id"], data["adeuda"]);
+                        }
+                    });
                     
                 });
+                function abrir_formulario_pago(id, adeuda){
+                    $("#monto_2").val("");
+                    $("#fecha_2").val("");
+                    $("#id_metodo_pago_2").val(0);
+
+                    $("#formulario_pago").modal("show");
+                    $("#btn_finalizar_2").attr("onclick", "actualizar_pago("+id+", \'"+adeuda+"\');");
+                }
                 function nuevo_pago(){
                     $("#exampleModalLabel").text("Registrar Pago");
                     $("#btn_finalizar").text("Guardar");
@@ -433,6 +542,40 @@ class html_pagos_2 extends f
                         }
                     });
                 }
+
+                function actualizar_pago(id, adeuda){
+                    var form_data = new FormData();
+                    
+                    var file = _("foto_2").files[0];
+                    form_data.append("foto", file);
+                    
+                    form_data.append("pago", $("#monto_2").val());
+                    form_data.append("fecha", $("#fecha_2").val());
+                    form_data.append("id_metodo_pago", $("#id_metodo_pago_2").val());
+                    form_data.append("id", id);
+                    form_data.append("adeuda", adeuda);
+                    
+                    $.ajax({
+                        url: "' . $this->baseurl . INDEX . 'pagos_2/updatePago",
+                        dataType: "script",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,                         // Setting the data attribute of ajax with file_data
+                        type: "post",
+                        success: function(response){
+                            table = $(".datatable").DataTable();
+                            table.ajax.reload();
+                            alertify.notify("<strong>Pago</strong> agregado correctamente.", "custom-black", 3, function() {});
+                            $("#cerrar_formulario_docente_2").click();
+                        },error: function() {
+                            table = $(".datatable").DataTable();
+                            table.ajax.reload();
+                            alertify.notify("<strong>Pago</strong> agregado correctamente.", "custom-black", 3, function() {});
+                            $("#cerrar_formulario_docente_2").click();
+                        }
+                    });
+                }
                 function guardar_pago(){
                     var form_data = new FormData();
                     
@@ -442,6 +585,7 @@ class html_pagos_2 extends f
                     form_data.append("id_usuario", $("#id_alumno").val());
                     form_data.append("monto", $("#monto").val());
                     form_data.append("fecha", $("#fecha").val());
+                    form_data.append("adeuda", $("#adeuda").val());
                     form_data.append("id_concepto", $("#id_concepto").val());
                     form_data.append("id_metodo_pago", $("#id_metodo_pago").val());
                     

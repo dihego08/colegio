@@ -118,6 +118,9 @@ class Header
                     <li class="nav-item">
                         <a id="" class="nav-link" href="' . $baseurl . INDEX . 'informe/">Informe Académico</a>
                     </li>
+                    <li class="nav-item">
+                        <a id="" class="nav-link" href="' . $baseurl . INDEX . 'configuracion_carnet/">Configuracion Carnet</a>
+                    </li>
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Matriculas </a>

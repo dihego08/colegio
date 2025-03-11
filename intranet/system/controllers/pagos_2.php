@@ -62,6 +62,45 @@ class pagos_2 extends f
 		$sql = "SELECT pension FROM usuarios WHERE id = " . $_POST['id_alumno'] . ";";
 		echo $this->modelo2->run_query($sql, false);
 	}
+
+	function updatePago()
+	{
+		$_POST['foto_comprobante'] = "";
+		$_POST['fproceso'] = "";
+		$aux = 0;
+		//if (isset($_FILES["foto"])) {
+		$fileName = $_FILES["foto"]["name"];
+		$fileTmpLoc = $_FILES["foto"]["tmp_name"];
+		$fileType = $_FILES["foto"]["type"];
+		$fileSize = $_FILES["foto"]["size"];
+		$fileErrorMsg = $_FILES["foto"]["error"];
+		if (!$fileTmpLoc) {
+			//exit();
+		}
+
+		if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/intranet/system/controllers/comprobantes_pago/$fileName")) {
+			$_POST['foto_comprobante'] = $fileName;
+			$aux++;
+		}
+		//}
+		//if ($_POST['adeuda'] > 0) {
+		//$res = json_decode($this->modelo2->insert_data("pagos_2", $_POST, false));
+
+		$this->modelo2->executor("UPDATE pagos_2 SET monto = monto + " . $_POST['pago'] . ", adeuda = adeuda - " . $_POST['pago'] . " WHERE id = " . $_POST['id'], "update");
+
+		$data = array();
+		$data['id_pago'] = $_POST['id'];
+		$data['adeuda'] = $_POST['adeuda'] - $_POST['pago'];
+		$data['pago'] = $_POST['pago'];
+		$data['fecha_creacion'] = date("Y-m-d H:i:s");
+		$data['fecha_pago'] = $_POST['fecha'];
+		$data['foto_comprobante'] = $_POST['foto_comprobante'];
+		$data['id_metodo_pago'] = $_POST['id_metodo_pago'];
+		echo $this->modelo2->insert_data("pagos_parciales", $data, false);
+		/*} else {
+			echo $this->modelo2->insert_data("pagos_2", $_POST, false);
+		}*/
+	}
 	function save()
 	{
 		$_POST['foto_comprobante'] = "";
@@ -82,7 +121,21 @@ class pagos_2 extends f
 			} else {
 			}
 		}
-		echo $this->modelo2->insert_data("pagos_2", $_POST, false);
+		//echo $this->modelo2->insert_data("pagos_2", $_POST, false);
+		if ($_POST['adeuda'] > 0) {
+			$res = json_decode($this->modelo2->insert_data("pagos_2", $_POST, false));
+			$data = array();
+			$data['id_pago'] = $res->LID;
+			$data['adeuda'] = $_POST['adeuda'];
+			$data['pago'] = $_POST['monto'];
+			$data['fecha_creacion'] = date("Y-m-d H:i:s");
+			$data['fecha_pago'] = $_POST['fecha'];
+			$data['foto_comprobante'] = $_POST['foto_comprobante'];
+			$data['id_metodo_pago'] = $_POST['id_metodo_pago'];
+			echo $this->modelo2->insert_data("pagos_parciales", $data, false);
+		} else {
+			echo $this->modelo2->insert_data("pagos_2", $_POST, false);
+		}
 	}
 	function eliminar()
 	{
@@ -113,7 +166,7 @@ class pagos_2 extends f
 			}
 			if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/intranet/system/controllers/comprobantes_pago/$fileName")) {
 				$_POST["foto_comprobante"] = $fileName;
-			} 
+			}
 		}
 
 		//echo $this->modelo3->update_data("profesores", $_POST);

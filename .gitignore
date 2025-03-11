@@ -10,6 +10,14 @@
 *.ppt
 *.odp
 *.zip
+*.png
+*.PNG
+*.JPG
+*.jpg
+*.gif
+*.GIF
+*.JPEG
+*.jpeg
 
 intranet/system/controllers/ranking_*/
 intranet/system/controllers/material_adicional/

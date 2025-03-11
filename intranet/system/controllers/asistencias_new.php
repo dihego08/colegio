@@ -120,13 +120,13 @@ class asistencias_new extends f
 				if ($e_cuenta[0]->monto < $alumno->pension) {
 					$ecuenta = '<span class="badge badge-warning" style="font-size: 100%;">Deuda Pendiente (S/ ' . number_format(($alumno->pension - $e_cuenta[0]->monto), 2) . ')</span> <span class="badge badge-danger" style="font-size: 100%;">Vencimiento: ' . (date("Y-m-d", strtotime(date("Y-m-d") . " +" . $e_cuenta[0]->plazo . "days"))) . '</span>';
 				} else {
-					$datetime1 = new DateTime($e_cuenta[0]->fecha);
+					$datetime1 = new DateTime(date("Y-m-" . $alumno->fecha_pago));
 
 					$datetime2 = new DateTime($fecha);
 
 					$difference = $datetime1->diff($datetime2);
 
-					if ($difference->days >= 30) {
+					if ($difference->days >= 1) {
 						$ecuenta = '<span class="badge badge-danger" style="font-size: 100%;">Deuda</span> <span class="badge badge-primary" style="font-size: 100%;">' . ($dia_hoy - $alumno->fecha_pago) . ' días Atraso.</span>';
 					} else {
 						$ecuenta = '<span class="badge badge-success" style="font-size: 100%;">Al día</span>';
