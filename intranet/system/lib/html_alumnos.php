@@ -119,6 +119,7 @@ class html_alumnos extends f
                                     <div class="col-6 mb-2">
                                         <label for="">Contraseña (*)</label>
                                         <input type="password" class="form-control" id="ins_pass">
+                                        <input type="hidden" id="id_grado">
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-row">
@@ -390,6 +391,8 @@ class html_alumnos extends f
                             "data": "nombres"
                         }, {
                             "data": "apellidos"
+                        }, {
+                            "data": "grado"
                         }],
                         "language": {
                             "url": "' . $this->baseurl . 'includes/datatables/Spanish.json"
@@ -574,62 +577,53 @@ class html_alumnos extends f
                 function guardar_alumno(){
                     var formdata = new FormData();
 
-                    if($("#id_grado").val() == -1 || $("#id_grado").val() == "-1"){
-                        bootbox.alert("Se debe de seleccionar un grado.");
-                    }else{
-                        var file = _("foto").files[0];
+                    var file = _("foto").files[0];
 
-                        formdata.append("foto", file);
-                        formdata.append("nombres", $("#ins_nombres").val());
-                        formdata.append("apellidos", $("#ins_apellidos").val());
-                        formdata.append("telefono", $("#ins_celular").val());
-                        formdata.append("fecha_nacimiento", $("#ins_fec_nacimiento").val());
-                        formdata.append("correo", $("#ins_correo").val());
-                        formdata.append("usuario", $("#ins_usuario").val());
-                        formdata.append("pass", $("#ins_pass").val());
-                        formdata.append("dni", $("#ins_dni").val());
-                        
-                        var ajax = new XMLHttpRequest();
-                        ajax.upload.addEventListener("progress", progressHandler, false);
-                        ajax.addEventListener("load", completeHandler, false);
-                        ajax.addEventListener("error", errorHandler, false);
-                        ajax.addEventListener("abort", abortHandler, false);
-                        ajax.open("POST", "' . $this->baseurl . INDEX . 'alumnos/save");
-                        ajax.send(formdata);
-                    }
+                    formdata.append("foto", file);
+                    formdata.append("nombres", $("#ins_nombres").val());
+                    formdata.append("apellidos", $("#ins_apellidos").val());
+                    formdata.append("telefono", $("#ins_celular").val());
+                    formdata.append("fecha_nacimiento", $("#ins_fec_nacimiento").val());
+                    formdata.append("correo", $("#ins_correo").val());
+                    formdata.append("usuario", $("#ins_usuario").val());
+                    formdata.append("pass", $("#ins_pass").val());
+                    formdata.append("dni", $("#ins_dni").val());
+                    
+                    var ajax = new XMLHttpRequest();
+                    ajax.upload.addEventListener("progress", progressHandler, false);
+                    ajax.addEventListener("load", completeHandler, false);
+                    ajax.addEventListener("error", errorHandler, false);
+                    ajax.addEventListener("abort", abortHandler, false);
+                    ajax.open("POST", "' . $this->baseurl . INDEX . 'alumnos/save");
+                    ajax.send(formdata);
                 }
                 
                 function actualizar_alumno(id){
 
                     var formdata = new FormData();
 
-                    if($("#ins_universidad").val() == -1 || $("#ins_universidad").val() == "-1"){
-                        bootbox.alert("Se debe seleccionar una universidad");
-                    }else if($("#ins_ciclo").val() == -1 || $("#ins_ciclo").val() == "-1"){
-                        bootbox.alert("Se debe de seleccionar un ciclo academico");
-                    }else {
-                        var file = _("foto").files[0];
+                    var file = _("foto").files[0];
 
-                        formdata.append("foto", file);
-                        formdata.append("nombres", $("#ins_nombres").val());
-                        formdata.append("apellidos", $("#ins_apellidos").val());
-                        formdata.append("telefono", $("#ins_celular").val());
-                        formdata.append("fecha_nacimiento", $("#ins_fec_nacimiento").val());
-                        formdata.append("correo", $("#ins_correo").val());
-                        formdata.append("usuario", $("#ins_usuario").val());
-                        formdata.append("pass", $("#ins_pass").val());
-                        formdata.append("dni", $("#ins_dni").val());
+                    formdata.append("foto", file);
+                    formdata.append("nombres", $("#ins_nombres").val());
+                    formdata.append("apellidos", $("#ins_apellidos").val());
+                    formdata.append("telefono", $("#ins_celular").val());
+                    formdata.append("fecha_nacimiento", $("#ins_fec_nacimiento").val());
+                    formdata.append("correo", $("#ins_correo").val());
+                    formdata.append("usuario", $("#ins_usuario").val());
+                    formdata.append("pass", $("#ins_pass").val());
+                    formdata.append("dni", $("#ins_dni").val());
+                    formdata.append("id_grado", $("#id_grado").val());
 
-                        formdata.append("id", id);
-                        
-                        var ajax = new XMLHttpRequest();
-                        ajax.upload.addEventListener("progress", progressHandler, false);
-                        ajax.addEventListener("load", completeHandler, false);
-                        ajax.addEventListener("error", errorHandler, false);
-                        ajax.addEventListener("abort", abortHandler, false);
-                        ajax.open("POST", "' . $this->baseurl . INDEX . 'alumnos/editarBD");
-                        ajax.send(formdata);
-                    }
+                    formdata.append("id", id);
+                    
+                    var ajax = new XMLHttpRequest();
+                    ajax.upload.addEventListener("progress", progressHandler, false);
+                    ajax.addEventListener("load", completeHandler, false);
+                    ajax.addEventListener("error", errorHandler, false);
+                    ajax.addEventListener("abort", abortHandler, false);
+                    ajax.open("POST", "' . $this->baseurl . INDEX . 'alumnos/editarBD");
+                    ajax.send(formdata);
                 }
             </script>';
         return $r;

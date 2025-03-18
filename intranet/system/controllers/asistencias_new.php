@@ -1,7 +1,7 @@
 <?php
-/*ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
+error_reporting(E_ALL);
 /*ini_set('soap.wsdl_cache_enabled',0);
     ini_set('soap.wsdl_cache_ttl',0);*/
 
@@ -89,9 +89,9 @@ class asistencias_new extends f
 
 			$alumno = json_decode($alumno);
 			$grado = json_decode($this->modelo3->select_one("grados", array('id' => $alumno->id_grado)));
-			
+
 			$e_cuenta = $this->estado_cuenta($alumno->id);
-			
+
 			// print_r($e_cuenta);
 			$anio = date("Y");
 			$fecha = date("Y-m-d");
@@ -108,10 +108,10 @@ class asistencias_new extends f
 			if (empty($e_cuenta) || count($e_cuenta) == 0) {
 				$ecuenta = '<span class="badge badge-danger" style="font-size: 100%;">Deuda</span> <span class="badge badge-primary" style="font-size: 100%;">' . ($alumno->fecha_pago - $dia_hoy) . ' días restantes.</span>';
 			} else {
-				if ($e_cuenta[0]->monto < $alumno->pension) {
-					$ecuenta = '<span class="badge badge-warning" style="font-size: 100%;">Deuda Pendiente (S/ ' . number_format(($alumno->pension - $e_cuenta[0]->monto), 2) . ')</span> <span class="badge badge-danger" style="font-size: 100%;">Vencimiento: ' . (date("Y-m-d", strtotime(date("Y-m-d") . " +" . $e_cuenta[0]->plazo . "days"))) . '</span>';
+				if ($e_cuenta[0]->adeuda > 0) {
+					$ecuenta = '<span class="badge badge-warning" style="font-size: 100%;">Deuda Pendiente (S/ ' . number_format(($e_cuenta[0]->adeuda), 2) . ')</span>';
 				} else {
-					$datetime1 = new DateTime(date("Y-m-" . $alumno->fecha_pago));
+					/*$datetime1 = new DateTime(date("Y-m-" . $alumno->fecha_pago));
 
 					$datetime2 = new DateTime($fecha);
 
@@ -119,12 +119,12 @@ class asistencias_new extends f
 
 					if ($difference->days >= 1) {
 						$ecuenta = '<span class="badge badge-danger" style="font-size: 100%;">Deuda</span> <span class="badge badge-primary" style="font-size: 100%;">' . ($dia_hoy - $alumno->fecha_pago) . ' días Atraso.</span>';
-					} else {
+					} else {*/
 						$ecuenta = '<span class="badge badge-success" style="font-size: 100%;">Al día</span>';
-					}
+					//}
 				}
 			}
-            unset($alumno->pass);
+			unset($alumno->pass);
 			$result = array(
 				'Code' => '100',
 				'Data' => $alumno,

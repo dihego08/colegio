@@ -77,7 +77,7 @@ class html_asistencias_new extends f{
                             $("#div_data_alumno").empty();
                             $("#div_data_alumno").append(`
                                 <h5>${obj.Data.nombres} ${obj.Data.apellidos}</h5>
-                                <h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>
+                                <!--<h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>-->
                                 <h5><strong>Estado de cuenta:</strong> ${obj.Ecuenta.ecuenta}</h5>
 
                                 <h5><strong>Grado:</strong> ${obj.grado}</h5>
@@ -101,7 +101,7 @@ class html_asistencias_new extends f{
                                     $("#div_data_alumno").empty();
                                     $("#div_data_alumno").append(`
                                         <h5>${obj.Data.nombres} ${obj.Data.apellidos}</h5>
-                                        <h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>
+                                        <!--<h5><strong>Fecha de pago:</strong> ${obj.Data.fecha_pago} de cada mes.</h5>-->
                                         <h5><strong>Estado de cuenta:</strong> ${obj.Ecuenta.ecuenta}</h5>
 
                                         <h5><strong>Grado:</strong> ${obj.grado}</h5>

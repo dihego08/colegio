@@ -81,7 +81,7 @@ class alumnos extends f
 	}
 	public function loadalumnos()
 	{
-		$sql = "SELECT us.* FROM usuarios as us;";
+		$sql = "SELECT us.*, g.grado FROM usuarios as us LEFT JOIN grados AS g on us.id_grado = g.id;";
 
 		$alumnos = json_decode($this->modelo2->run_query($sql, false));
 
@@ -90,8 +90,7 @@ class alumnos extends f
 			unset($value->pass);
 			$correos = "";
 
-			$value->carrera = "<p><span class=\"w-100\" style=\"display: block;\">" . $value->carrera . "</span><small>" . $value->area . " - " . $value->universidad . "</small></p>";
-			$value->ciclo = "<p class=\"text-center\"><span class=\"w-100\" style=\"display: block;\">" . $value->ciclo . " -</span><small>" . $value->grupo . "</small></p>";
+			$value->grado = "<p><span class=\"w-100\" style=\"display: block;\">" . $value->grado . "</span></p>";
 
 			$result[] = $value;
 		}
