@@ -37,11 +37,16 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         }
         $auxiliar_horario++;
     }
+    $foto = 'user-2935527_1280.png';
+    if (is_null($row['foto']) || empty($row['foto'])) {
+    } else {
+        $foto = $row['foto'];
+    }
 
     if ($auxiliar == 0) {
         $carnets .= '<tr>';
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0;">
-        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
             
             <table style="width: 100%; margin-top: 40%;">
                 <tr>
@@ -84,7 +89,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                 <td style="width: 20%;">
                                 </td>
                                 <td style="width: 60%;">
-                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                    <img src="https://colegio.laclaveacademia.com/system/controllers/photo/' . $foto . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
                                 </td>
                                 <td style="width: 20%;">
                                 </td>
@@ -109,7 +114,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         $auxiliar = 0;
         $carnets .= '<tr>';
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0; min-height: 400px;">
-            <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+            <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
                 
                 
                 <table style="width: 100%; margin-top: 15%;">
@@ -153,7 +158,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                 <td style="width: 20%;">
                                 </td>
                                 <td style="width: 60%;">
-                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                    <img src="https://colegio.laclaveacademia.com/system/controllers/photo/' . $foto . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
                                 </td>
                                 <td style="width: 20%;">
                                 </td>
@@ -173,7 +178,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         </td>';
     } else {
         $carnets .= '<td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0; min-height: 400px;">
-        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/intranet/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
+        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-image:url(\'https://colegio.laclaveacademia.com/system/controllers/fondos_carnet/' . $settings['imagen'] . '\');background-size: contain;background-position: top;background-repeat: no-repeat;">
             
             
             
@@ -218,7 +223,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                 <td style="width: 20%;">
                                 </td>
                                 <td style="width: 60%;">
-                                    <img src="https://colegio.laclaveacademia.com/intranet/system/controllers/photo/' . $row['foto'] . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
+                                    <img src="https://colegio.laclaveacademia.com/system/controllers/photo/' . $foto . '" style="max-width: 100%; height: auto; display: block; margin: auto;">
                                 </td>
                                 <td style="width: 20%;">
                                 </td>
@@ -308,7 +313,7 @@ $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
 $dompdf->setPaper('A4', 'portrait');
-$dompdf->set_option('dpi', 300); 
+$dompdf->set_option('dpi', 300);
 // Render the HTML as PDF
 $dompdf->render();
 

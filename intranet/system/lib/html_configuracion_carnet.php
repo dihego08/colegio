@@ -51,14 +51,11 @@ class html_configuracion_carnet extends f
                             <div class="row" style="position:relative;">
                                 <table class="m-auto">
                                     <td style="width: 50%; padding-top: 1%; padding-bottom:2%; padding-left: 6%; padding-right: 16%; margin: 0; min-height: 400px;">
-                                        <div style="position:relative; border: solid 1px; width: 80mm; height: 48mm; background-size: contain;background-position: center;background-repeat: no-repeat;" id="div-elemento">
-                                            <table style="width: 100%; margin-left: 1rem; margin-top: 15%;">
+                                        <div style="position:relative; border: solid 1px; width: 48mm; height: 80mm; background-size: contain;background-position: center;background-repeat: no-repeat;" id="div-elemento">
+                                            <table style="width: 100%; margin-top: 30%;">
                                                 <tr>
-                                                    <td style="width: 30%;">
-                                                        <img src="https://laclave.diegoaranibar.com/intranet/system/controllers/photo/user-2935527_1280.png" style="width: 100%; z-index: 0;">
-                                                    </td>
                                                     <td>
-                                                        <table border="0" style="width: 100%;">
+                                                        <table border="0" style="width: 100%; margin-left: 5%;">
                                                             <tr>
                                                                 <td style="width: 50%;">
                                                                     <h5 class="color_texto" style="font-size: 12px; margin: 0px 0px 0px 0px; color: green;">Nombres:</h5>
@@ -92,10 +89,19 @@ class html_configuracion_carnet extends f
                                                         </table>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td style="width: 100%;">
+                                                        <img src="https://colegio.laclaveacademia.com/system/controllers/photo/user-2935527_1280.png" style="width: 100%; width: 50%; z-index: 0; margin-left: auto; margin-right: auto; display: block;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 100%;">
+                                                        <h5 class="color_texto text-center" style="font-size: 15px; font-weight: 700; color: green;">
+                                                            ' . date("Y") . '
+                                                        </h5>
+                                                    </td>
+                                                </tr>
                                             </table>
-                                            <h5 class="color_texto" style="position: absolute; font-size: 15px; font-weight: 700; color: green; right: 2%; bottom: 0;">
-                                                ' . date("Y") . '
-                                            </h5>
                                         </div>
                                     </td>
                                 </table>
@@ -263,7 +269,7 @@ class html_configuracion_carnet extends f
                         $("#color_secundario").val(obj[0].color_secundario);
                         $("#color_texto").val(obj[0].color_texto);
 
-                        $("#div-elemento").css("background-image", "url(\'https://laclave.diegoaranibar.com/intranet/system/controllers/fondos_carnet/" +obj[0].imagen + "\')");
+                        $("#div-elemento").css("background-image", "url(\'https://colegio.laclaveacademia.com/system/controllers/fondos_carnet/" +obj[0].imagen + "\')");
 
                         $("#svg_color_principal path").attr("fill", obj[0].color_principal); // Actualizar el color del SVG
                         $("#svg_color_secundario path").attr("fill", obj[0].color_secundario); // Actualizar el color del SVG
