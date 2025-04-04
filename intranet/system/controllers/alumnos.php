@@ -170,7 +170,7 @@ class alumnos extends f
 			//exit();
 		}
 
-		if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/intranet/system/controllers/photo/$fileName")) {
+		if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/system/controllers/photo/$fileName")) {
 			$_POST['foto'] = $fileName;
 			$aux++;
 		} else {
@@ -229,7 +229,7 @@ class alumnos extends f
 			if (!$fileTmpLoc) {
 				//exit();
 			}
-			if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/intranet/system/controllers/photo/$fileName")) {
+			if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/system/controllers/photo/$fileName")) {
 				$_POST["foto"] = $fileName;
 			} else {
 				$_POST["foto"] = "";

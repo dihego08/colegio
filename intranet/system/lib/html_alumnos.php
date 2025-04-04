@@ -184,12 +184,12 @@ class html_alumnos extends f
                 function completeHandler(event){
                     var obj = JSON.parse(event.target.response);
                     if(obj.Result == "OK"){
-                        alertify.notify("Realizado Correctamente.</strong>", "custom-black", 4, function() {});
+                        alertify.success("Realizado Correctamente.</strong>", "custom-black", 4, function() {});
                     }else{
                         if(obj.Code == 125){
-                            alertify.notify("El DNI se encuentra registrado ya.</strong>", "custom-black", 4, function() {});
+                            alertify.error("El DNI se encuentra registrado ya.</strong>", "custom-black", 4, function() {});
                         }else{
-                            alertify.notify("Algo ha salido mal.</strong>", "custom-black", 4, function() {});
+                            alertify.error("Algo ha salido mal.</strong>", "custom-black", 4, function() {});
                         }
                         
                     }

@@ -49,7 +49,7 @@ class configuracion_carnet extends f
             //exit();
         }
 
-        if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/intranet/system/controllers/fondos_carnet/$fileName")) {
+        if (move_uploaded_file($fileTmpLoc, $_SERVER['DOCUMENT_ROOT'] . "/system/controllers/fondos_carnet/$fileName")) {
             $_POST['imagen'] = $fileName;
             echo "Se ha guardado";
         } else {
