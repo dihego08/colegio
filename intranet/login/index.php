@@ -202,7 +202,7 @@ if (isset($_POST['btn-login'])) {
 											</div>
 
 											<div class="form-group">
-												Power by &copy; <a href="https://softluttion.com">Softluttion</a>
+												Power by &copy; <a href="https://dbusinessaqp.com/">DB Digital Business</a>
 											</div>
 										</div>
 									</div>

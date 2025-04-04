@@ -15,7 +15,7 @@ class Footer
 							©
 							<script>
 								document.write(new Date().getFullYear())
-							</script>, made with <i class="fa fa-heart heart"></i> by <a href="https://softluttion.com">Softluttion</a>
+							</script>, made with <i class="fa fa-heart heart"></i> by <a href="https://dbusinessaqp.com/">DB Digital Business</a>
 						</span>
 					</div>
 				</div>
